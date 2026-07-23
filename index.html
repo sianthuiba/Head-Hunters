@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Head Hunters</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://unpkg.com/@studio-freight/lenis@1.0.34/dist/lenis.min.js"></script>
+    
+    <link rel="stylesheet" href="style.css">
+    
+</head>
+
+<body>
+
+    <canvas id="webgl-bg" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -10; pointer-events: none; background: #000;"></canvas>
+
+    <div style="position: relative; z-index: 1;">
+
+        <header>
+            <nav>
+                <div class="logo">Head Hunters</div>
+                <ul>
+                    <li><a href="companies.html">Companies</a></li>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="lead-form.html">Lead Form</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                    <li><a href="admin-lead.html">Admin Panel</a></li>
+                    <li><a href="login.html">Login</a></li>
+                    <li><a href="#" class="open-verifier-btn">Email Verifier</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Grow Your Business With Quality Leads</h1>
+                <p>Generate, Manage and Convert Leads Faster</p>
+                <a href="lead-form.html" class="btn">Get Started</a>
+            </div>
+        </section>
+
+        <section class="services">
+            <h2>Our Services</h2>
+            <div class="service-boxes">
+                <div class="box">
+                    <h3>Real Estate Leads</h3>
+                    <p>Get high-quality property buyer leads.</p>
+                </div>
+                <div class="box">
+                    <h3>Recruitment Leads</h3>
+                    <p>Connect employers with job seekers.</p>
+                </div>
+                <div class="box">
+                    <h3>Digital Marketing</h3>
+                    <p>Boost online visibility and conversions.</p>
+                </div>
+                <div class="box">
+                    <h3>BPO Services</h3>
+                    <p>Professional outsourcing solutions.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="about">
+            <h2>Why Choose Us?</h2>
+            <br>
+            <p>We provide verified and targeted leads to help businesses increase sales and maximize ROI.</p>
+        </section>
+
+        <section class="contact">
+            <h2>Ready To Get More Leads?</h2>
+            <br>
+            <a href="lead-form.html" class="btn">Submit Requirement</a>
+        </section>
+
+        <section class="plans-section">
+            <h2>Choose Your Access Level</h2>
+            <p class="plans-subtitle">Browse companies for free or unlock premium business contacts.</p>
+
+            <div class="plans-grid">
+                <div class="plan-card free">
+                    <h3>FREE</h3>
+                    <div class="price">₹0</div>
+                    <ul>
+                        <li>✔ Company Name</li>
+                        <li>✔ Industry</li>
+                        <li>✔ Website</li>
+                        <li>✔ Country & City</li>
+                        <li>✔ Company Description</li>
+                        <li>✔ Basic Search</li>
+                        <li>✖ Contact Details</li>
+                        <li>✖ Email Addresses</li>
+                        <li>✖ WhatsApp Numbers</li>
+                        <li>✖ Decision Makers</li>
+                    </ul>
+                    <a href="#" class="plan-btn open-verifier-btn">Start Free</a>
+                </div>
+
+                <div class="plan-card premium">
+                    <div class="badge">MOST POPULAR</div>
+                    <h3>PROFESSIONAL</h3>
+                    <div class="price">₹999<span>/month</span></div>
+                    <ul>
+                        <li>✔ Everything in Free</li>
+                        <li>✔ CEO & Decision Maker</li>
+                        <li>✔ Mobile Numbers</li>
+                        <li>✔ WhatsApp Contacts</li>
+                        <li>✔ Email Addresses</li>
+                        <li>✔ LinkedIn Profiles</li>
+                        <li>✔ Advanced Search</li>
+                        <li>✔ Lead Downloads</li>
+                        <li>✔ CRM Export</li>
+                        <li>✔ Priority Support</li>
+                    </ul>
+                    <a href="contact.html" class="plan-btn premium-btn">Upgrade Now</a>
+                </div>
+
+                <div class="plan-card enterprise">
+                    <h3>ENTERPRISE</h3>
+                    <div class="price">₹4999<span>/month</span></div>
+                    <ul>
+                        <li>✔ Unlimited Searches</li>
+                        <li>✔ Full Database Access</li>
+                        <li>✔ Bulk Downloads</li>
+                        <li>✔ API Integration</li>
+                        <li>✔ Team Accounts</li>
+                        <li>✔ White Label Reports</li>
+                        <li>✔ CRM Integration</li>
+                        <li>✔ Dedicated Manager</li>
+                    </ul>
+                    <a href="contact.html" class="plan-btn enterprise-btn">Contact Sales</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="testimonials">
+            <h2>Trusted By Businesses Worldwide</h2>
+            <p class="testimonial-subtitle">Helping companies discover quality business opportunities.</p>
+            <div class="testimonial-grid">
+                <div class="testimonial-card">
+                    <div class="stars">★★★★★</div>
+                    <p>"We found over 300 targeted leads within the first month."</p>
+                    <h4>John Smith</h4>
+                    <span>CEO, ABC Developers</span>
+                </div>
+                <div class="testimonial-card">
+                    <div class="stars">★★★★★</div>
+                    <p>"The premium database helped us connect directly with decision makers."</p>
+                    <h4>Sarah Johnson</h4>
+                    <span>Business Director</span>
+                </div>
+                <div class="testimonial-card">
+                    <div class="stars">★★★★★</div>
+                    <p>"An excellent platform for B2B prospecting and lead generation."</p>
+                    <h4>Michael Lee</h4>
+                    <span>Sales Manager</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="global-section">
+            <h2>Global Business Coverage</h2>
+            <p>Search companies from major business hubs around the world.</p>
+            <div class="country-grid">
+                <div class="country-card">🇮🇳 India</div>
+                <div class="country-card">🇺🇸 United States</div>
+                <div class="country-card">🇬🇧 United Kingdom</div>
+                <div class="country-card">🇸🇬 Singapore</div>
+                <div class="country-card">🇦🇪 UAE</div>
+                <div class="country-card">🇦🇺 Australia</div>
+                <div class="country-card">🇨🇦 Canada</div>
+                <div class="country-card">🇩🇪 Germany</div>
+            </div>
+        </section>
+
+        <section class="cta-section">
+            <h2>Ready To Discover Your Next Customer?</h2>
+            <p>Access thousands of companies and premium business contacts today.</p>
+            <div class="cta-buttons">
+                <a href="companies.html" class="cta-primary">Browse Companies</a>
+                <a href="pricing.html" class="cta-secondary">Upgrade To Premium</a>
+            </div>
+        </section>
+
+        <footer class="footer">
+            <div class="footer-grid">
+                <div>
+                    <h3>Head Hunters Global</h3>
+                    <p>Global Business Directory & Lead Generation Platform</p>
+                </div>
+                <div>
+                    <h3>Quick Links</h3>
+                    <p><a href="index.html">Home</a></p>
+                    <p><a href="companies.html">Companies</a></p>
+                    <p><a href="pricing.html">Pricing</a></p>
+                    <p><a href="contact.html">Contact</a></p>
+                </div>
+                <div>
+                    <h3>Support</h3>
+                    <p>Email: support@headhuntersglobal.com</p>
+                    <p>Phone: +91 7005936547</p>
+                </div>
+            </div>
+            <hr>
+            <p class="copyright">© 2026 Head Hunters Global. All Rights Reserved.</p>
+        </footer>
+
+        <a href="https://wa.me/917005936547" class="whatsapp-float button-three" target="_blank">
+            <img src="sianthuiba.jpeg" alt="Sianthuiba" class="whatsapp-icon">
+            <span class="whatsapp-text">Sianthuiba</span>
+        </a>
+
+        <a href="https://wa.me/917085954119" class="whatsapp-float button-two" target="_blank">
+            <img src="sianthuiba.jpeg" alt="J Avah" class="whatsapp-icon">
+            <span class="whatsapp-text">J Avah</span>
+        </a>
+
+        <a href="https://wa.me/918132939316" class="whatsapp-float button-one" target="_blank">
+            <img src="dovei.jpeg" alt="Dovei" class="whatsapp-icon">
+            <span class="whatsapp-text">Dovei</span>
+        </a>
+
+        <div id="emailVerifierModal" class="verifier-modal">
+            <div class="verifier-modal-content">
+                <span class="close-modal-btn">&times;</span>
+                <h3>📧 Email Verifier</h3>
+                <p>Enter an email address to process validation filters rules instantly.</p>
+                <div class="verifier-form-group">
+                    <input type="email" id="modalEmailInput" placeholder="name@company.com" required>
+                    <button id="modalVerifyBtn">Verify Address</button>
+                </div>
+                <div id="verifierResult" class="verifier-result-msg"></div>
+            </div>
+        </div>
+
+    </div> 
+    <canvas id="webgl-bg"></canvas>
+    <script src="app.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

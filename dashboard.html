@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LeadPro Dashboard</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    background:#f4f6f9;
+}
+
+.sidebar{
+    width:250px;
+    height:100vh;
+    background:#0d6efd;
+    position:fixed;
+    left:0;
+    top:0;
+    color:white;
+    padding:20px;
+}
+
+.sidebar h2{
+    text-align:center;
+    margin-bottom:30px;
+}
+
+.sidebar ul{
+    list-style:none;
+}
+
+.sidebar ul li{
+    margin:15px 0;
+}
+
+.sidebar ul li a{
+    color:white;
+    text-decoration:none;
+    display:block;
+    padding:10px;
+    border-radius:5px;
+}
+
+.sidebar ul li a:hover{
+    background:rgba(255,255,255,0.2);
+}
+
+.main{
+    margin-left:250px;
+    padding:30px;
+}
+
+.header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:30px;
+}
+
+.cards{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:20px;
+    margin-bottom:30px;
+}
+
+.card{
+    background:white;
+    padding:25px;
+    border-radius:10px;
+    box-shadow:0 2px 10px rgba(0,0,0,.1);
+}
+
+.card h3{
+    color:#666;
+    margin-bottom:10px;
+}
+
+.card p{
+    font-size:30px;
+    font-weight:bold;
+    color:#0d6efd;
+}
+
+.toolbar{
+    display:flex;
+    justify-content:space-between;
+    margin-bottom:20px;
+    flex-wrap:wrap;
+    gap:10px;
+}
+
+.search-box{
+    padding:10px;
+    width:300px;
+    border:1px solid #ccc;
+    border-radius:5px;
+}
+
+.btn{
+    background:#0d6efd;
+    color:white;
+    border:none;
+    padding:10px 15px;
+    border-radius:5px;
+    cursor:pointer;
+}
+
+.btn:hover{
+    background:#084ec1;
+}
+
+.table-container{
+    background:white;
+    padding:20px;
+    border-radius:10px;
+    box-shadow:0 2px 10px rgba(0,0,0,.1);
+    overflow-x:auto;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+table th,
+table td{
+    border:1px solid #ddd;
+    padding:12px;
+    text-align:left;
+}
+
+table th{
+    background:#0d6efd;
+    color:white;
+}
+
+.status-new{
+    color:green;
+    font-weight:bold;
+}
+
+.status-converted{
+    color:#ff9800;
+    font-weight:bold;
+}
+
+@media(max-width:768px){
+.sidebar{
+    position:relative;
+    width:100%;
+    height:auto;
+}
+
+.main{
+    margin-left:0;
+}
+}
+</style>
+</head>
+
+<body>
+    <div style="padding:15px;">
+    <button onclick="history.back()" class="back-btn">
+        ← Back
+    </button>
+</div>
+
+<div class="sidebar">
+
+<h2>Head Hunters</h2>
+
+<ul>
+<li><a href="lead-form.html">Add Lead</a></li>
+<li><a href="manage-leads.html">Manage Leads</a></li>
+<li><a href="#">Reports</a></li>
+<li><a href="index.html">Website</a></li>
+<li><a href="index.html">Logout</a></li>
+</ul>
+
+</div>
+
+<div class="main">
+
+<div class="header">
+<h1>Lead Management Dashboard</h1>
+</div>
+
+<div class="cards">
+
+<div class="card">
+<h3>Total Leads</h3>
+<p id="totalLeads">0</p>
+</div>
+
+<div class="card">
+<h3>New Leads</h3>
+<p id="newLeads">0</p>
+</div>
+
+<div class="card">
+<h3>Converted Leads</h3>
+<p id="convertedLeads">0</p>
+</div>
+
+<div class="card">
+<h3>Pending Follow-ups</h3>
+<p id="pendingLeads">0</p>
+</div>
+
+</div>
+
+<div class="toolbar">
+
+<input
+type="text"
+id="searchInput"
+class="search-box"
+placeholder="Search leads..."
+onkeyup="searchTable()">
+
+<button class="btn" onclick="exportTableToCSV()">
+Export CSV
+</button>
+
+</div>
+
+<div class="table-container">
+
+<table id="leadTable">
+
+<thead>
+<tr>
+<th>Name</th>
+<th>Company</th>
+<th>Designation</th>
+<th>Phone</th>
+<th>Email</th>
+<th>City</th>
+<th>Industry</th>
+<th>Service</th>
+<th>Priority</th>
+<th>Status</th>
+</tr>
+</thead>
+
+<tbody id="leadBody">
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+<script>
+
+const sheetURL =
+"https://script.google.com/macros/s/AKfycbx5V2DmuX_6w93uL51mwiiqfsIxH6EDOrVP5uisnfURL60ufQMS8hLLZ5S_YrshVEpKDg/exec";
+
+loadLeads();
+
+function loadLeads(){
+
+fetch(sheetURL)
+
+.then(response => response.json())
+
+.then(data => {
+
+let rows = "";
+
+let total = data.length;
+let converted = 0;
+let pending = 0;
+let newLead = 0;
+
+data.forEach(lead => {
+
+if(lead.status == "Converted")
+converted++;
+
+if(lead.status == "Follow-up")
+pending++;
+
+if(lead.status == "New")
+newLead++;
+
+rows += `
+<tr>
+
+<td>${lead.name || ""}</td>
+
+<td>${lead.company || ""}</td>
+
+<td>${lead.designation || ""}</td>
+
+<td>${lead.phone || ""}</td>
+
+<td>${lead.email || ""}</td>
+
+<td>${lead.city || ""}</td>
+
+<td>${lead.industry || ""}</td>
+
+<td>${lead.service || ""}</td>
+
+<td>${lead.priority || ""}</td>
+
+<td>${lead.status || "New"}</td>
+
+</tr>
+`;
+
+});
+
+document.getElementById("leadBody").innerHTML =
+rows;
+
+document.getElementById("totalLeads").innerText =
+total;
+
+document.getElementById("newLeads").innerText =
+newLead;
+
+document.getElementById("convertedLeads").innerText =
+converted;
+
+document.getElementById("pendingLeads").innerText =
+pending;
+
+})
+
+.catch(error => {
+
+console.log(error);
+
+});
+
+}
+
+function searchTable(){
+
+let input =
+document.getElementById("searchInput")
+.value.toUpperCase();
+
+let rows =
+document.querySelectorAll("#leadBody tr");
+
+rows.forEach(row => {
+
+let text =
+row.innerText.toUpperCase();
+
+row.style.display =
+text.indexOf(input) > -1
+? ""
+: "none";
+
+});
+
+}
+
+function exportTableToCSV(){
+
+let csv = [];
+
+let rows =
+document.querySelectorAll("table tr");
+
+for(let row of rows){
+
+let cols =
+row.querySelectorAll("td,th");
+
+let rowData = [];
+
+for(let col of cols){
+
+rowData.push(col.innerText);
+
+}
+
+csv.push(rowData.join(","));
+
+}
+
+let csvFile =
+new Blob([csv.join("\n")],
+{type:"text/csv"});
+
+let downloadLink =
+document.createElement("a");
+
+downloadLink.download =
+"LeadProCRM.csv";
+
+downloadLink.href =
+window.URL.createObjectURL(csvFile);
+
+downloadLink.click();
+
+}
+
+</script>
+
+</body>
+</html>

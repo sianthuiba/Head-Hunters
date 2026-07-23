@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>Register | Head Hunters Global</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Segoe UI',sans-serif;
+}
+
+body{
+
+min-height:100vh;
+
+display:flex;
+justify-content:center;
+align-items:center;
+
+background:
+linear-gradient(
+135deg,
+#0d6efd,
+#6f42c1);
+
+padding:30px;
+
+}
+
+/* CARD */
+
+.register-box{
+
+width:500px;
+max-width:100%;
+
+padding:40px;
+
+border-radius:20px;
+
+background:
+rgba(255,255,255,.12);
+
+backdrop-filter:blur(12px);
+
+box-shadow:
+0 10px 40px rgba(0,0,0,.2);
+
+color:white;
+
+}
+
+h2{
+text-align:center;
+margin-bottom:10px;
+}
+
+.subtitle{
+text-align:center;
+opacity:.8;
+margin-bottom:25px;
+}
+
+.form-group{
+margin-bottom:15px;
+}
+
+.form-group label{
+display:block;
+margin-bottom:6px;
+}
+
+.form-group input{
+
+width:100%;
+padding:14px;
+border:none;
+border-radius:10px;
+outline:none;
+
+}
+
+.checkbox{
+margin-top:15px;
+font-size:14px;
+}
+
+.checkbox input{
+margin-right:8px;
+}
+
+.register-btn{
+
+width:100%;
+padding:15px;
+border:none;
+border-radius:10px;
+background:#ffc107;
+font-weight:bold;
+cursor:pointer;
+margin-top:20px;
+
+}
+
+.google-btn{
+
+width:100%;
+padding:15px;
+border:none;
+border-radius:10px;
+background:white;
+color:black;
+font-weight:bold;
+cursor:pointer;
+margin-top:15px;
+
+}
+
+.login-link{
+
+text-align:center;
+margin-top:20px;
+
+}
+
+.login-link a{
+color:#ffc107;
+text-decoration:none;
+font-weight:bold;
+}
+#message{
+display:none;
+padding:12px;
+margin-bottom:15px;
+border-radius:8px;
+font-weight:bold;
+text-align:center;
+}
+
+.success{
+display:block;
+background:#28a745;
+color:white;
+}
+
+.error{
+display:block;
+background:#dc3545;
+color:white;
+}
+.logo{
+text-align:center;
+margin-bottom:20px;
+}
+
+.logo img{
+width:220px;
+max-width:100%;
+height:auto;
+display:block;
+margin:auto;
+filter:drop-shadow(0 0 15px rgba(255,215,0,.6));
+transition:.4s;
+}
+
+.logo img:hover{
+transform:scale(1.05);
+filter:drop-shadow(0 0 25px rgba(255,215,0,.9));
+}
+
+</style>
+</a>
+<link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+<div class="register-box">
+    <div class="logo">
+        <img src="Logo.jpeg" alt="Head Hunter Logo">
+    </div>
+
+    <h2>Create Account</h2>
+    <p class="subtitle">Join Head Hunters Global Business Directory</p>
+
+    <div id="message"></div>
+
+    <form id="registerForm">
+        <div class="form-group">
+            <label>Full Name</label>
+            <input type="text" id="fullname" required>
+        </div>
+
+        <div class="form-group">
+            <label>Company Name</label>
+            <input type="text" id="companyName" required>
+        </div>
+
+        <div class="form-group">
+            <label>Mobile Number</label>
+            <input type="tel" id="mobile" required>
+        </div>
+
+        <div class="form-group">
+            <label>Email Address</label>
+            <input type="email" id="email" required>
+        </div>
+
+        <div class="form-group">
+            <label>Password</label>
+            <small style="color: rgba(255,255,255,0.6); display: block; margin-bottom: 5px;">Must be at least 8 characters with 1 letter and 1 number</small>
+            <input type="password" id="password" required>
+        </div>
+
+        <div class="form-group">
+            <label>Confirm Password</label>
+            <input type="password" id="confirmPassword" required>
+        </div>
+
+        <div class="checkbox">
+            <label>
+                <input type="checkbox" id="terms" required>
+                I agree to the Terms & Conditions
+            </label>
+        </div>
+        <input type="checkbox" id="terms" required>
+
+        <button type="submit" class="register-btn">Create Account</button>
+        <button type="button" class="google-btn">Continue With Google</button>
+    </form>
+
+    <div class="login-link">
+        Already have an account? <a href="login.html">Login</a>
+    </div>
+</div>
+
+</form>
+
+<script>
+document.getElementById('registerForm').addEventListener('submit', function(event) {
+    event.preventDefault(); // Stop blank page reloads completely
+    
+    const messageBox = document.getElementById('message');
+    
+    // Grab and clean up values
+    const fullName = document.getElementById('fullname').value.trim();
+    const email = document.getElementById('email').value.trim().toLowerCase();
+    const password = document.getElementById('password').value;
+    const confirmPassword = document.getElementById('confirmPassword').value;
+    const termsChecked = document.getElementById('terms').checked;
+    
+    // Clear any previous error/success classes
+    messageBox.className = "";
+    messageBox.style.display = "block"; // Make sure it's visible
+    
+    // 1. Validation: Double-check Terms & Conditions
+    if (!termsChecked) {
+        messageBox.innerText = "❌ You must agree to the Terms & Conditions!";
+        messageBox.classList.add('error');
+        return;
+    }
+
+    // 2. NEW BLOCK: Check if email already exists in local storage "database"
+    // Get existing users array or create a new empty one if it's the first sign-up
+    let registeredUsersList = JSON.parse(localStorage.getItem('savedUsers')) || [
+        "admin@gmail.com", 
+        "testuser@gmail.com", 
+        "ssianthuibabl@gmail.com" // Hardcoded defaults
+    ];
+
+    if (registeredUsersList.includes(email)) {
+        messageBox.innerText = "❌ This email address is already registered!";
+        messageBox.classList.add('error');
+        return;
+    }
+    
+    // 3. Validation: Password Length Check
+    if (password.length < 8) {
+        messageBox.innerText = "❌ Password must be at least 8 characters long!";
+        messageBox.classList.add('error');
+        return;
+    }
+    
+    // 4. Validation: Password Complexity Check (1 letter, 1 number)
+    const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d).{8,}$/;
+    if (!passwordRegex.test(password)) {
+        messageBox.innerText = "❌ Password must contain at least one letter and one number!";
+        messageBox.classList.add('error');
+        return;
+    }
+    
+    // 5. Validation: Matching Passwords Check
+    if (password !== confirmPassword) {
+        messageBox.innerText = "❌ Passwords do not match!";
+        messageBox.classList.add('error');
+        return;
+    }
+    
+    // SUCCESS PATH: Save new email to the simulated local storage list
+    registeredUsersList.push(email);
+    localStorage.setItem('savedUsers', JSON.stringify(registeredUsersList));
+
+    messageBox.innerText = `🎉 Account created successfully for ${fullName}! Redirecting...`;
+    messageBox.classList.add('success');
+    
+    // Force a redirection to login.html after 2 seconds
+    setTimeout(() => {
+        window.location.href = "login.html"; 
+    }, 2000);
+});
+
+// Continue With Google Button Logic
+document.querySelector('.google-btn').addEventListener('click', function() {
+    const userEmail = prompt("Google Accounts:\nChoose an account or enter your Google Email to log in:");
+    if (!userEmail) return; 
+
+    const sanitizedEmail = userEmail.trim().toLowerCase();
+    
+    // Pull the updated list so Google login recognizes newly registered users too!
+    let registeredUsersList = JSON.parse(localStorage.getItem('savedUsers')) || [
+        "admin@gmail.com", "testuser@gmail.com", "ssianthuibabl@gmail.com"
+    ];
+
+    if (registeredUsersList.includes(sanitizedEmail)) {
+        alert(`✅ Account Verified!\nWelcome back, ${sanitizedEmail}. Redirecting to your dashboard...`);
+        setTimeout(() => {
+            window.location.href = "user-dashboard.html";
+        }, 1000);
+    } else {
+        alert(`❌ Verification Failed!\n"${sanitizedEmail}" is not registered yet. Please use the form to sign up.`);
+    }
+});
+</script>
+
+</body>
+</html>

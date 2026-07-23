@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>Company Details</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:#f4f6f9;
+}
+
+/* HEADER */
+
+header{
+background:#0d6efd;
+padding:15px 40px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+}
+
+.logo{
+font-size:26px;
+font-weight:bold;
+color:white;
+}
+
+nav ul{
+display:flex;
+list-style:none;
+}
+
+nav ul li{
+margin-left:20px;
+}
+
+nav ul li a{
+color:white;
+text-decoration:none;
+font-weight:bold;
+}
+
+/* HERO */
+
+.company-banner{
+
+height:350px;
+
+background:
+linear-gradient(
+rgba(0,0,0,.65),
+rgba(0,0,0,.65)
+),
+
+url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1600');
+
+background-size:cover;
+background-position:center;
+
+display:flex;
+justify-content:center;
+align-items:center;
+
+color:white;
+text-align:center;
+
+}
+
+.company-banner h1{
+font-size:55px;
+margin-bottom:15px;
+}
+
+.company-banner p{
+font-size:20px;
+}
+
+/* CONTAINER */
+
+.container{
+max-width:1300px;
+margin:auto;
+padding:40px 20px;
+}
+
+/* INFO CARD */
+
+.info-card{
+background:white;
+padding:30px;
+border-radius:15px;
+box-shadow:0 5px 20px rgba(0,0,0,.08);
+margin-bottom:25px;
+}
+
+.info-card h2{
+margin-bottom:20px;
+color:#0d6efd;
+}
+
+.info-grid{
+display:grid;
+grid-template-columns:
+repeat(auto-fit,minmax(250px,1fr));
+gap:20px;
+}
+
+.info-box{
+background:#f8f9fa;
+padding:15px;
+border-radius:10px;
+}
+
+/* DESCRIPTION */
+
+.description{
+line-height:1.8;
+color:#555;
+}
+
+/* PREMIUM */
+
+.premium-box{
+
+background:
+linear-gradient(
+135deg,
+#0d6efd,
+#6f42c1);
+
+color:white;
+
+padding:30px;
+
+border-radius:15px;
+
+margin-bottom:25px;
+
+text-align:center;
+
+}
+
+.premium-box h2{
+margin-bottom:15px;
+}
+
+.lock-item{
+padding:10px;
+font-size:18px;
+}
+
+.upgrade-btn{
+
+display:inline-block;
+
+margin-top:20px;
+
+padding:14px 30px;
+
+background:#ffc107;
+
+color:black;
+
+font-weight:bold;
+
+text-decoration:none;
+
+border-radius:8px;
+
+}
+
+/* RELATED */
+
+.related-grid{
+display:grid;
+grid-template-columns:
+repeat(auto-fit,minmax(280px,1fr));
+gap:20px;
+}
+
+.related-card{
+background:white;
+padding:25px;
+border-radius:15px;
+box-shadow:0 5px 15px rgba(0,0,0,.08);
+transition:.3s;
+}
+
+.related-card:hover{
+transform:translateY(-8px);
+}
+
+.related-card a{
+display:inline-block;
+margin-top:15px;
+color:#0d6efd;
+font-weight:bold;
+text-decoration:none;
+}
+
+/* FOOTER */
+
+footer{
+background:#111;
+color:white;
+text-align:center;
+padding:25px;
+margin-top:50px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<div class="logo">
+🏢 Head Hunters Global
+<a href="companies.html"
+class="btn btn-back">
+← Back
+</a>
+</div>
+
+<nav>
+
+<ul>
+
+<li><a href="index.html">Home</a></li>
+
+<li><a href="companies.html">Companies</a></li>
+
+<li><a href="pricing.html">Pricing</a></li>
+
+<li><a href="contact.html">Contact</a></li>
+
+</ul>
+
+</nav>
+
+</header>
+
+
+<section class="company-banner">
+
+<div>
+
+<h1>ABC Developers</h1>
+
+<p>
+Leading Real Estate Developer
+in Bangalore, India
+</p>
+
+</div>
+
+</section>
+
+
+<div class="container">
+
+<div class="info-card">
+
+<h2>Company Information</h2>
+
+<div class="info-grid">
+
+<div class="info-box">
+<strong>Industry</strong>
+<br>
+Real Estate
+</div>
+
+<div class="info-box">
+<strong>Country</strong>
+<br>
+India
+</div>
+
+<div class="info-box">
+<strong>City</strong>
+<br>
+Bangalore
+</div>
+
+<div class="info-box">
+<strong>Employees</strong>
+<br>
+500+
+</div>
+
+<div class="info-box">
+<strong>Founded</strong>
+<br>
+2010
+</div>
+
+<div class="info-box">
+<strong>Website</strong>
+<br>
+www.abcdevelopers.com
+</div>
+
+</div>
+
+</div>
+
+
+<div class="info-card">
+
+<h2>About Company</h2>
+
+<p class="description">
+
+ABC Developers is one of the
+leading real estate companies
+specializing in residential,
+commercial and township
+development projects across India.
+
+</p>
+
+</div>
+
+
+<div class="premium-box">
+
+<h2>
+🔒 Premium Contact Information
+</h2>
+
+<div class="lock-item">
+CEO Name: 🔒 Premium Only
+</div>
+
+<div class="lock-item">
+Mobile Number: 🔒 Premium Only
+</div>
+
+<div class="lock-item">
+WhatsApp: 🔒 Premium Only
+</div>
+
+<div class="lock-item">
+Email Address: 🔒 Premium Only
+</div>
+
+<div class="lock-item">
+LinkedIn Profile: 🔒 Premium Only
+</div>
+
+<a href="pricing.html"
+class="upgrade-btn">
+
+Upgrade To Premium
+
+</a>
+
+</div>
+
+
+<div class="info-card">
+
+<h2>Related Companies</h2>
+
+<div class="related-grid">
+
+<div class="related-card">
+
+<h3>XYZ Builders</h3>
+
+<p>
+Commercial Property Developer
+</p>
+
+<a href="#">
+View Details
+</a>
+
+</div>
+
+<div class="related-card">
+
+<h3>Prime Infra</h3>
+
+<p>
+Residential Housing Projects
+</p>
+
+<a href="#">
+View Details
+</a>
+
+</div>
+
+<div class="related-card">
+
+<h3>Skyline Estates</h3>
+
+<p>
+Luxury Apartment Developer
+</p>
+
+<a href="#">
+View Details
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<footer>
+
+<p>
+© 2026 Head Hunters Global.
+All Rights Reserved.
+</p>
+
+</footer>
+
+</body>
+</html>

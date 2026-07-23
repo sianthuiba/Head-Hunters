@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lead Form - Head Hunters</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    background:#f4f6f9;
+}
+
+header{
+    background:#0d6efd;
+    padding:15px 50px;
+}
+
+nav{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.logo{
+    color:#fff;
+    font-size:28px;
+    font-weight:bold;
+}
+
+nav ul{
+    display:flex;
+    list-style:none;
+}
+
+nav ul li{
+    margin-left:20px;
+}
+
+nav ul li a{
+    color:#fff;
+    text-decoration:none;
+    font-weight:bold;
+}
+
+.container{
+    max-width:700px;
+    margin:50px auto;
+    background:#fff;
+    padding:40px;
+    border-radius:10px;
+    box-shadow:0 0 15px rgba(0,0,0,0.1);
+}
+
+h1{
+    text-align:center;
+    color:#0d6efd;
+    margin-bottom:10px;
+}
+
+.subtitle{
+    text-align:center;
+    color:#666;
+    margin-bottom:30px;
+}
+
+.form-group{
+    margin-bottom:20px;
+}
+
+label{
+    display:block;
+    margin-bottom:8px;
+    font-weight:bold;
+}
+
+input,
+select,
+textarea{
+    width:100%;
+    padding:12px;
+    border:1px solid #ccc;
+    border-radius:5px;
+    font-size:15px;
+}
+
+textarea{
+    resize:vertical;
+}
+
+button{
+    width:100%;
+    background:#0d6efd;
+    color:white;
+    border:none;
+    padding:14px;
+    border-radius:5px;
+    cursor:pointer;
+    font-size:16px;
+    font-weight:bold;
+}
+
+button:hover{
+    background:#084ec1;
+}
+
+.success{
+    display:none;
+    background:#d4edda;
+    color:#155724;
+    padding:15px;
+    margin-bottom:20px;
+    border-radius:5px;
+}
+
+footer{
+    background:#222;
+    color:#fff;
+    text-align:center;
+    padding:20px;
+    margin-top:50px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div style="padding:15px;">
+    <button onclick="history.back()" class="back-btn">
+        ← Back
+    </button>
+</div>
+<nav>
+<div class="logo">LeadPro</div>
+
+<ul>
+<li><a href="index.html">Home</a></li>
+<li><a href="about.html">About Us</a></li>
+<li><a href="services.html">Services</a></li>
+<li><a href="lead-form.html">Lead Form</a></li>
+<li><a href="contact.html">Contact Us</a></li>
+<li><a href="admin.html">Admin Panel</a></li>
+</ul>
+
+</nav>
+</header>
+
+<div class="container">
+
+<h1>Lead Registration Form</h1>
+
+<p class="subtitle">
+Submit your details and our team will contact you shortly.
+</p>
+
+<div id="successMsg" class="success">
+Lead submitted successfully!
+</div>
+
+<form id="leadForm">
+
+<div class="form-group">
+<label>Full Name *</label>
+<input type="text" id="name" required>
+</div>
+
+<div class="form-group">
+<label>Company Name *</label>
+<input type="text" id="company" required>
+</div>
+
+<div class="form-group">
+<label>Designation</label>
+<input type="text" id="designation">
+</div>
+
+<div class="form-group">
+<label>Mobile Number *</label>
+<input type="tel" id="phone" required>
+</div>
+
+<div class="form-group">
+<label>WhatsApp Number</label>
+<input type="tel" id="whatsapp">
+</div>
+
+<div class="form-group">
+<label>Email Address *</label>
+<input type="email" id="email" required>
+</div>
+
+<div class="form-group">
+<label>Website</label>
+<input type="url" id="website">
+</div>
+
+<div class="form-group">
+<label>City *</label>
+<input type="text" id="city" required>
+</div>
+
+<div class="form-group">
+<label>State</label>
+<input type="text" id="state">
+</div>
+
+<div class="form-group">
+<label>Country</label>
+<input type="text" id="country" value="India">
+</div>
+
+<div class="form-group">
+<label>Industry</label>
+<select id="industry">
+<option>Real Estate</option>
+<option>Recruitment</option>
+<option>Insurance</option>
+<option>Finance</option>
+<option>Education</option>
+<option>IT Services</option>
+<option>Healthcare</option>
+<option>Manufacturing</option>
+<option>Others</option>
+</select>
+</div>
+
+<div class="form-group">
+<label>Company Size</label>
+<select id="companySize">
+<option>1-10 Employees</option>
+<option>11-50 Employees</option>
+<option>51-200 Employees</option>
+<option>201-500 Employees</option>
+<option>500+ Employees</option>
+</select>
+</div>
+
+<div class="form-group">
+<label>Service Interested In *</label>
+<select id="service" required>
+<option>Real Estate Leads</option>
+<option>Recruitment Leads</option>
+<option>Insurance Leads</option>
+<option>Loan Leads</option>
+<option>Digital Marketing</option>
+<option>BPO Services</option>
+<option>Others</option>
+</select>
+</div>
+
+<div class="form-group">
+<label>Budget Range</label>
+<select id="budget">
+<option>Below ₹10,000</option>
+<option>₹10,000 - ₹50,000</option>
+<option>₹50,000 - ₹1,00,000</option>
+<option>Above ₹1,00,000</option>
+</select>
+</div>
+
+<div class="form-group">
+<label>Priority</label>
+<select id="priority">
+<option>Low</option>
+<option>Medium</option>
+<option>High</option>
+</select>
+</div>
+
+<div class="form-group">
+<label>Lead Source</label>
+<select id="source">
+<option>Website</option>
+<option>Google</option>
+<option>Facebook</option>
+<option>Instagram</option>
+<option>WhatsApp</option>
+<option>Referral</option>
+</select>
+</div>
+
+<div class="form-group">
+<label>Follow-up Date</label>
+<input type="date" id="followup">
+</div>
+
+<div class="form-group">
+<label>Requirement Details</label>
+<textarea id="requirement" rows="5"></textarea>
+</div>
+
+<button type="submit">
+Submit Lead
+</button>
+
+</form>
+
+</div>
+
+<footer>
+<p>&copy; 2026 LeadPro. All Rights Reserved.</p>
+</footer>
+
+<script>
+
+const scriptURL =
+"https://script.google.com/macros/s/AKfycbx5V2DmuX_6w93uL51mwiiqfsIxH6EDOrVP5uisnfURL60ufQMS8hLLZ5S_YrshVEpKDg/exec";
+
+document.getElementById("leadForm")
+.addEventListener("submit", function(e){
+
+e.preventDefault();
+
+fetch(scriptURL,{
+
+method:"POST",
+
+body:new URLSearchParams({
+
+action:"add",
+
+name:document.getElementById("name").value,
+company:document.getElementById("company").value,
+designation:document.getElementById("designation").value,
+phone:document.getElementById("phone").value,
+whatsapp:document.getElementById("whatsapp").value,
+email:document.getElementById("email").value,
+website:document.getElementById("website").value,
+city:document.getElementById("city").value,
+state:document.getElementById("state").value,
+country:document.getElementById("country").value,
+industry:document.getElementById("industry").value,
+companySize:document.getElementById("companySize").value,
+service:document.getElementById("service").value,
+budget:document.getElementById("budget").value,
+priority:document.getElementById("priority").value,
+source:document.getElementById("source").value,
+followup:document.getElementById("followup").value,
+requirement:document.getElementById("requirement").value
+
+})
+
+})
+
+.then(response=>response.text())
+
+.then(data=>{
+
+alert("Lead Submitted Successfully");
+
+document.getElementById("leadForm").reset();
+
+})
+
+.catch(error=>{
+
+alert("Submission Failed");
+
+console.log(error);
+
+});
+
+});
+
+</script>
+
+</body>
+</html>

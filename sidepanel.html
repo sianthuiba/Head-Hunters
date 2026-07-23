@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <style>
+    body { font-family: Arial, sans-serif; padding: 15px; margin: 0; background-color: #f9f9fb; color: #333; }
+    h2 { color: #0073b1; font-size: 18px; margin-top: 0; }
+    .card { background: white; padding: 15px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); margin-bottom: 15px; }
+    .field { margin-bottom: 10px; }
+    .label { font-size: 11px; color: #777; text-transform: uppercase; font-weight: bold; }
+    .value { font-size: 14px; font-weight: 500; margin-top: 2px; }
+    button { width: 100%; background-color: #0073b1; color: white; border: none; padding: 10px; border-radius: 5px; font-weight: bold; cursor: pointer; font-size: 14px; }
+    button:hover { background-color: #005582; }
+  </style>
+</head>
+<body>
+
+  <h2>RecruitHub Scout</h2>
+  
+  <div class="card">
+    <div class="field">
+      <div class="label">Candidate Name</div>
+      <div id="candidate-name" class="value">Click scan to load...</div>
+    </div>
+    <div class="field">
+      <div class="label">Current Role</div>
+      <div id="candidate-title" class="value">Click scan to load...</div>
+    </div>
+  </div>
+
+  <button id="scan-btn">Scan Profile</button>
+
+  <script>
+    // Ask content.js to scrape the active tab
+    document.getElementById('scan-btn').addEventListener('click', async () => {
+      const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
+      
+      // Inject content script into the active tab dynamically
+      chrome.scripting.executeScript({
+        target: { tabId: tab.id },
+        files: ['content.js']
+      }, () => {
+        // Once injected, tell it to extract data
+        chrome.tabs.sendMessage(tab.id, { action: "TRIGGER_EXTRACTION" });
+      });
+    });
+
+    // Listen for the scraped data coming back from content.js
+    chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+      if (message.action === "PROFILE_EXTRACTED") {
+        document.getElementById('candidate-name').innerText = message.data.name;
+        document.getElementById('candidate-title').innerText = message.data.title;
+      }
+    });
+  </script>
+</body>
+</html>

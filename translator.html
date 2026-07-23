@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>AI Translator Chat</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    background:#020617;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+    padding:20px;
+    color:white;
+}
+
+.container{
+    width:100%;
+    max-width:950px;
+    height:92vh;
+    background:#0f172a;
+    border-radius:20px;
+    overflow:hidden;
+    display:flex;
+    flex-direction:column;
+    box-shadow:0 0 30px rgba(0,0,0,0.5);
+}
+
+.header{
+    background:#111827;
+    padding:20px;
+    border-bottom:1px solid #1e293b;
+}
+
+.header h1{
+    color:#38bdf8;
+    margin-bottom:15px;
+}
+
+.language-box{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+}
+
+select{
+    flex:1;
+    min-width:180px;
+    padding:12px;
+    border:none;
+    border-radius:12px;
+    background:#1e293b;
+    color:white;
+    font-size:15px;
+    outline:none;
+}
+
+.swap-btn{
+    padding:12px 18px;
+    border:none;
+    border-radius:12px;
+    background:#38bdf8;
+    color:black;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+.chat-box{
+    flex:1;
+    overflow-y:auto;
+    padding:20px;
+    display:flex;
+    flex-direction:column;
+    gap:15px;
+    background:#020617;
+}
+
+.message{
+    max-width:80%;
+    padding:15px;
+    border-radius:18px;
+    line-height:1.5;
+    animation:fadeIn 0.3s ease;
+}
+
+.user{
+    align-self:flex-end;
+    background:#38bdf8;
+    color:black;
+}
+
+.bot{
+    align-self:flex-start;
+    background:#1e293b;
+    color:white;
+}
+
+.message-actions{
+    margin-top:10px;
+    display:flex;
+    gap:10px;
+}
+
+.action-btn{
+    padding:8px 12px;
+    border:none;
+    border-radius:10px;
+    background:#334155;
+    color:white;
+    cursor:pointer;
+    font-size:13px;
+}
+
+.action-btn:hover{
+    background:#475569;
+}
+
+.input-area{
+    padding:20px;
+    background:#111827;
+    display:flex;
+    gap:10px;
+}
+
+textarea{
+    flex:1;
+    height:60px;
+    resize:none;
+    border:none;
+    border-radius:15px;
+    padding:15px;
+    background:#1e293b;
+    color:white;
+    font-size:15px;
+    outline:none;
+}
+
+.send-btn{
+    padding:15px 25px;
+    border:none;
+    border-radius:15px;
+    background:#38bdf8;
+    color:black;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.send-btn:hover,
+.swap-btn:hover{
+    opacity:0.8;
+}
+
+.loading{
+    color:#cbd5e1;
+    font-size:14px;
+}
+
+@keyframes fadeIn{
+    from{
+        opacity:0;
+        transform:translateY(10px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+@media(max-width:700px){
+
+    .language-box{
+        flex-direction:column;
+    }
+
+    .message{
+        max-width:95%;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="header">
+
+        <h1>🌍 AI Translator Chat</h1>
+
+        <div class="language-box">
+
+            <select id="fromLang">
+
+                <option value="auto">Auto Detect</option>
+                <option value="en">English</option>
+                <option value="hi">Hindi</option>
+                <option value="fr">French</option>
+                <option value="es">Spanish</option>
+                <option value="de">German</option>
+                <option value="ja">Japanese</option>
+                <option value="ko">Korean</option>
+                <option value="zh-CN">Chinese</option>
+                <option value="ar">Arabic</option>
+                <option value="ru">Russian</option>
+                <option value="bn">Bengali</option>
+                <option value="ta">Tamil</option>
+                <option value="te">Telugu</option>
+                <option value="ml">Malayalam</option>
+                <option value="it">Italian</option>
+                <option value="pt">Portuguese</option>
+
+            </select>
+
+            <button class="swap-btn"
+            onclick="swapLanguages()">⇄</button>
+
+            <select id="toLang">
+
+                <option value="hi">Hindi</option>
+                <option value="en">English</option>
+                <option value="fr">French</option>
+                <option value="es">Spanish</option>
+                <option value="de">German</option>
+                <option value="ja">Japanese</option>
+                <option value="ko">Korean</option>
+                <option value="zh-CN">Chinese</option>
+                <option value="ar">Arabic</option>
+                <option value="ru">Russian</option>
+                <option value="bn">Bengali</option>
+                <option value="ta">Tamil</option>
+                <option value="te">Telugu</option>
+                <option value="ml">Malayalam</option>
+                <option value="it">Italian</option>
+                <option value="pt">Portuguese</option>
+
+            </select>
+
+        </div>
+
+    </div>
+
+    <div class="chat-box" id="chatBox">
+
+        <div class="message bot">
+            👋 Welcome! Type and press ENTER to translate.
+        </div>
+
+    </div>
+
+    <div class="input-area">
+
+        <textarea id="text"
+        placeholder="Type text and press Enter..."></textarea>
+
+        <button class="send-btn"
+        onclick="translateMessage()">
+        Send
+        </button>
+
+    </div>
+
+</div>
+
+<script>
+
+const chatBox =
+document.getElementById("chatBox");
+
+function addMessage(
+    text,
+    type,
+    isTranslated=false
+){
+
+    const div =
+    document.createElement("div");
+
+    div.className =
+    `message ${type}`;
+
+    if(isTranslated){
+
+        div.innerHTML = `
+            <div>🌐 ${text}</div>
+
+            <div class="message-actions">
+
+                <button class="action-btn"
+                onclick="speakTranslatedWord(\`${text}\`)">
+                🔊 Pronounce
+                </button>
+
+                <button class="action-btn"
+                onclick="copyText(\`${text}\`)">
+                📋 Copy
+                </button>
+
+            </div>
+        `;
+
+    }else{
+
+        div.innerHTML =
+        `<div>${text}</div>`;
+
+    }
+
+    chatBox.appendChild(div);
+
+    chatBox.scrollTop =
+    chatBox.scrollHeight;
+}
+
+async function translateMessage(){
+
+    const input =
+    document.getElementById("text");
+
+    const text =
+    input.value.trim();
+
+    if(text === "") return;
+
+    const from =
+    document.getElementById("fromLang").value;
+
+    const to =
+    document.getElementById("toLang").value;
+
+    // USER MESSAGE
+    addMessage(text,"user");
+
+    input.value = "";
+
+    // LOADING MESSAGE
+    const loading =
+    document.createElement("div");
+
+    loading.className =
+    "message bot loading";
+
+    loading.innerHTML =
+    "⏳ Translating...";
+
+    chatBox.appendChild(loading);
+
+    chatBox.scrollTop =
+    chatBox.scrollHeight;
+
+    try{
+
+        const url =
+        `https://translate.googleapis.com/translate_a/single?client=gtx&sl=${from}&tl=${to}&dt=t&q=${encodeURIComponent(text)}`;
+
+        const response =
+        await fetch(url);
+
+        const data =
+        await response.json();
+
+        loading.remove();
+
+        // GET TRANSLATED TEXT
+        const translated =
+        data[0]
+        .map(item => item[0])
+        .join("");
+
+        addMessage(
+            translated,
+            "bot",
+            true
+        );
+
+    }catch(error){
+
+        loading.remove();
+
+        console.log(error);
+
+        addMessage(
+            "❌ Translation failed",
+            "bot"
+        );
+
+    }
+}
+
+function speakTranslatedWord(word){
+
+    word =
+    word.replace("🌐","").trim();
+
+    const toLang =
+    document.getElementById("toLang").value;
+
+    const speech =
+    new SpeechSynthesisUtterance(word);
+
+    speech.lang = toLang;
+
+    speech.rate = 0.8;
+
+    speech.pitch = 1;
+
+    window.speechSynthesis.cancel();
+
+    window.speechSynthesis.speak(speech);
+}
+
+function copyText(text){
+
+    navigator.clipboard.writeText(text);
+
+    alert("Copied!");
+
+}
+
+function swapLanguages(){
+
+    const from =
+    document.getElementById("fromLang");
+
+    const to =
+    document.getElementById("toLang");
+
+    let temp = from.value;
+
+    from.value = to.value;
+
+    to.value = temp;
+}
+
+// ENTER KEY SUPPORT
+
+document.getElementById("text")
+.addEventListener(
+"keydown",
+function(event){
+
+    if(
+        event.key === "Enter"
+        &&
+        !event.shiftKey
+    ){
+
+        event.preventDefault();
+
+        translateMessage();
+
+    }
+
+});
+
+</script>
+
+</body>
+</html>

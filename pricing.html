@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Pricing Plans | Head Hunters Global</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:#f5f7fb;
+}
+
+/* HEADER */
+
+header{
+background:#0d6efd;
+padding:15px 40px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+}
+
+.logo{
+font-size:28px;
+font-weight:bold;
+color:white;
+}
+
+nav ul{
+display:flex;
+list-style:none;
+}
+
+nav ul li{
+margin-left:20px;
+}
+
+nav ul li a{
+color:white;
+text-decoration:none;
+font-weight:bold;
+}
+
+/* HERO */
+
+.hero{
+padding:100px 20px;
+text-align:center;
+background:
+linear-gradient(135deg,#0d6efd,#6f42c1);
+color:white;
+}
+
+.hero h1{
+font-size:55px;
+margin-bottom:20px;
+}
+
+.hero p{
+font-size:22px;
+max-width:800px;
+margin:auto;
+}
+
+/* PRICING */
+
+.pricing{
+padding:80px 30px;
+}
+
+.pricing-grid{
+display:grid;
+grid-template-columns:
+repeat(auto-fit,minmax(320px,1fr));
+gap:30px;
+max-width:1400px;
+margin:auto;
+}
+
+.plan{
+
+background:white;
+
+border-radius:20px;
+
+padding:40px;
+
+box-shadow:
+0 10px 30px rgba(0,0,0,.08);
+
+transition:.4s;
+
+position:relative;
+
+}
+
+.plan:hover{
+
+transform:translateY(-12px);
+
+box-shadow:
+0 25px 50px rgba(13,110,253,.2);
+
+}
+
+.plan h2{
+margin-bottom:20px;
+}
+
+.price{
+
+font-size:50px;
+
+font-weight:bold;
+
+margin-bottom:20px;
+
+color:#0d6efd;
+
+}
+
+.price span{
+font-size:18px;
+color:#666;
+}
+
+.plan ul{
+list-style:none;
+margin-top:20px;
+}
+
+.plan ul li{
+padding:12px 0;
+border-bottom:1px solid #eee;
+}
+
+.btn{
+
+display:block;
+
+text-align:center;
+
+margin-top:30px;
+
+padding:15px;
+
+border-radius:10px;
+
+text-decoration:none;
+
+font-weight:bold;
+
+}
+
+.free-btn{
+background:#6c757d;
+color:white;
+}
+
+.pro-btn{
+background:#0d6efd;
+color:white;
+}
+
+.enterprise-btn{
+background:#28a745;
+color:white;
+}
+
+.badge{
+
+position:absolute;
+
+top:-12px;
+
+right:20px;
+
+background:#ffc107;
+
+padding:8px 15px;
+
+border-radius:20px;
+
+font-size:12px;
+
+font-weight:bold;
+
+}
+
+/* COMPARISON */
+
+.compare{
+
+padding:80px 30px;
+
+background:white;
+
+}
+
+.compare h2{
+text-align:center;
+margin-bottom:40px;
+}
+
+table{
+
+width:100%;
+
+border-collapse:collapse;
+
+max-width:1200px;
+
+margin:auto;
+
+}
+
+th,td{
+
+padding:15px;
+
+border:1px solid #ddd;
+
+text-align:center;
+
+}
+
+th{
+background:#0d6efd;
+color:white;
+}
+
+/* CTA */
+
+.cta{
+
+padding:100px 30px;
+
+text-align:center;
+
+background:#0d6efd;
+
+color:white;
+
+}
+
+.cta h2{
+font-size:45px;
+margin-bottom:20px;
+}
+
+.cta p{
+font-size:20px;
+margin-bottom:30px;
+}
+
+.cta a{
+
+background:#ffc107;
+
+padding:15px 30px;
+
+text-decoration:none;
+
+font-weight:bold;
+
+border-radius:10px;
+
+color:black;
+
+}
+
+/* FOOTER */
+
+footer{
+background:#111;
+color:white;
+text-align:center;
+padding:25px;
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+
+<div class="logo">
+🏢 Head Hunters Global
+</div>
+
+<nav>
+
+<ul>
+
+<li><a href="index.html">Home</a></li>
+<li><a href="companies.html">Companies</a></li>
+<li><a href="pricing.html">Pricing</a></li>
+<li><a href="contact.html">Contact</a></li>
+
+</ul>
+
+</nav>
+
+</header>
+
+
+<section class="hero">
+
+<h1>
+Choose Your Plan
+</h1>
+
+<p>
+Access global company intelligence,
+verified business contacts and premium leads.
+</p>
+
+</section>
+
+
+<section class="pricing">
+
+<div class="pricing-grid">
+
+<!-- FREE -->
+
+<div class="plan">
+
+<h2>FREE</h2>
+
+<div class="price">
+₹0
+</div>
+
+<ul>
+
+<li>✔ Browse Companies</li>
+<li>✔ Industry Directory</li>
+<li>✔ Company Profiles</li>
+<li>✔ Website Links</li>
+<li>✔ Basic Search</li>
+
+<li>❌ Phone Numbers</li>
+<li>❌ Emails</li>
+<li>❌ WhatsApp</li>
+<li>❌ Downloads</li>
+
+</ul>
+
+<a href="#" class="btn free-btn">
+Get Started
+</a>
+
+</div>
+
+
+<!-- PROFESSIONAL -->
+
+<div class="plan">
+
+<div class="badge">
+POPULAR
+</div>
+
+<h2>PROFESSIONAL</h2>
+
+<div class="price">
+₹999
+<span>/month</span>
+</div>
+
+<ul>
+
+<li>✔ Everything in FREE</li>
+
+<li>✔ Mobile Numbers</li>
+<li>✔ WhatsApp Contacts</li>
+<li>✔ Email Addresses</li>
+<li>✔ LinkedIn Profiles</li>
+<li>✔ CEO Information</li>
+<li>✔ Advanced Filters</li>
+<li>✔ CRM Export</li>
+<li>✔ Priority Support</li>
+
+</ul>
+
+<a href="contact.html"
+class="btn pro-btn">
+
+Upgrade Now
+
+</a>
+
+</div>
+
+
+<!-- ENTERPRISE -->
+
+<div class="plan">
+
+<h2>ENTERPRISE</h2>
+
+<div class="price">
+₹4999
+<span>/month</span>
+</div>
+
+<ul>
+
+<li>✔ Unlimited Searches</li>
+<li>✔ Full Database Access</li>
+<li>✔ Bulk Downloads</li>
+<li>✔ API Access</li>
+<li>✔ Team Accounts</li>
+<li>✔ CRM Integration</li>
+<li>✔ White Label Reports</li>
+<li>✔ Dedicated Manager</li>
+
+</ul>
+
+<a href="contact.html"
+class="btn enterprise-btn">
+
+Contact Sales
+
+</a>
+
+</div>
+
+</div>
+
+</section>
+
+
+<section class="compare">
+
+<h2>
+Plan Comparison
+</h2>
+
+<table>
+
+<tr>
+<th>Features</th>
+<th>Free</th>
+<th>Professional</th>
+<th>Enterprise</th>
+</tr>
+
+<tr>
+<td>Company Profiles</td>
+<td>✔</td>
+<td>✔</td>
+<td>✔</td>
+</tr>
+
+<tr>
+<td>Phone Numbers</td>
+<td>❌</td>
+<td>✔</td>
+<td>✔</td>
+</tr>
+
+<tr>
+<td>Email Addresses</td>
+<td>❌</td>
+<td>✔</td>
+<td>✔</td>
+</tr>
+
+<tr>
+<td>Bulk Download</td>
+<td>❌</td>
+<td>❌</td>
+<td>✔</td>
+</tr>
+
+<tr>
+<td>API Access</td>
+<td>❌</td>
+<td>❌</td>
+<td>✔</td>
+</tr>
+
+</table>
+
+</section>
+
+
+<section class="cta">
+
+<h2>
+Ready To Unlock Premium Leads?
+</h2>
+
+<p>
+Get direct access to decision makers and business contacts.
+</p>
+
+<a href="contact.html">
+Start Today
+</a>
+
+</section>
+
+
+<footer>
+
+<p>
+© 2026 Head Hunters Global. All Rights Reserved.
+</p>
+
+</footer>
+
+</body>
+</html>

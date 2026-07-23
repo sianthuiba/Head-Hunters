@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | Head Hunters Global</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #0d6efd, #6f42c1);
+            padding: 30px;
+            position: relative;
+        }
+
+        /* BACK BUTTON: Pinned cleanly to the bottom-left of the screen */
+        .btn-back {
+            position: fixed !important;
+            bottom: 30px !important;
+            left: 30px !important;
+            z-index: 9999 !important;
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .btn-back:hover {
+            color: #ffc107;
+        }
+
+        /* CARD CONTAINER */
+        .login-box {
+            width: 450px;
+            max-width: 100%;
+            padding: 40px;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, .12);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, .2);
+            color: white;
+        }
+
+        .logo {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .logo img {
+            width: 180px;
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: auto;
+            filter: drop-shadow(0 0 15px rgba(255, 215, 0, .6));
+            transition: .4s;
+        }
+
+        .logo img:hover {
+            transform: scale(1.05);
+            filter: drop-shadow(0 0 25px rgba(255, 215, 0, .9));
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 8px;
+            font-size: 28px;
+            letter-spacing: 0.5px;
+        }
+
+        .subtitle {
+            text-align: center;
+            opacity: .8;
+            margin-bottom: 30px;
+            font-size: 14px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 10px;
+            outline: none;
+            color: #333;
+            font-size: 15px;
+        }
+
+        /* YELLOW LOGIN BUTTON */
+        .login-btn {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 10px;
+            background: #ffc107;
+            color: #212529;
+            font-weight: bold;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: background 0.3s, transform 0.2s;
+        }
+
+        .login-btn:hover {
+            background: #e0a800;
+            transform: translateY(-1px);
+        }
+
+        /* GOOGLE BUTTON */
+        .google-btn {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 10px;
+            background: white;
+            color: black;
+            font-weight: bold;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 15px;
+            transition: background 0.3s, transform 0.2s;
+        }
+
+        .google-btn:hover {
+            background: #f1f1f1;
+            transform: translateY(-1px);
+        }
+
+        .login-btn:active, .google-btn:active {
+            transform: translateY(1px);
+        }
+
+        .register-link {
+            text-align: center;
+            margin-top: 25px;
+            font-size: 14px;
+        }
+
+        .register-link a {
+            color: #ffc107;
+            text-decoration: none;
+            font-weight: bold;
+            margin-left: 5px;
+        }
+
+        .register-link a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+<a href="index.html" class="btn-back">← Back</a>
+
+<div class="login-box">
+    
+    <div class="logo">
+        <img src="Logo.jpeg" alt="Head Hunter Logo">
+    </div>
+
+    <h2>Head Hunters</h2>
+    <p class="subtitle">Login to access premium company data</p>
+
+    <form id="loginForm">
+       <div class="form-group">
+    <label>Email Address</label>
+    <input type="email" id="loginEmail" placeholder="Enter your email address" required>
+        </div>
+
+        <div class="form-group">
+            <label>Password</label>
+            <input type="password" id="loginPassword" placeholder="Enter password" required>
+        </div>
+
+        <button type="submit" class="login-btn">Login</button>
+        <button type="button" class="google-btn">Continue With Google</button>
+    </form>
+
+    <div class="register-link">
+        Don't have an account? <a href="register.html">Register Now</a>
+    </div>
+
+<div class="form-options" style="display: flex; justify-content: flex-end; margin-bottom: 15px;">
+    <a href="forgot-password.html" style="color: #ffffff; text-decoration: none; font-size: 14px;">Forgot Password?</a>
+</div>
+    
+</div>
+
+<script>
+// 1. Regular Form Submit Security Check
+document.getElementById('loginForm').addEventListener('submit', function(event) {
+    event.preventDefault(); 
+    
+    const email = document.getElementById('loginEmail').value.trim().toLowerCase();
+    const blockedUsersList = JSON.parse(localStorage.getItem('blockedUsers')) || [];
+
+    // Check if the admin blocked this account
+    if (blockedUsersList.includes(email)) {
+        alert("❌ Your account has been suspended by the Admin due to misconduct.");
+        return;
+    }
+
+    window.location.href = "user-dashboard.html";
+});
+
+// 2. Google Login Security Check
+document.querySelector('.google-btn').addEventListener('click', function() {
+    const userEmail = prompt("Google Accounts:\nChoose an account or enter your Google Email to log in:");
+    if (!userEmail) return; 
+
+    const sanitizedEmail = userEmail.trim().toLowerCase();
+    const blockedUsersList = JSON.parse(localStorage.getItem('blockedUsers')) || [];
+
+    // Check if the admin blocked this Google account
+    if (blockedUsersList.includes(sanitizedEmail)) {
+        alert("❌ This Google account has been suspended by the Admin.");
+        return;
+    }
+    
+    let registeredUsersList = JSON.parse(localStorage.getItem('savedUsers')) || ["admin@gmail.com", "testuser@gmail.com"];
+
+    if (registeredUsersList.includes(sanitizedEmail)) {
+        alert(`✅ Account Verified!\nWelcome back, ${sanitizedEmail}. Redirecting...`);
+        setTimeout(() => { window.location.href = "user-dashboard.html"; }, 1000);
+    } else {
+        alert(`❌ Verification Failed! "${sanitizedEmail}" is not registered yet.`);
+    }
+});
+const isMatch = await bcrypt.compare(req.body.password, user.password);
+if (!isMatch) return res.status(400).json({ message: "Invalid credentials" });
+const crypto = require('crypto');
+
+app.post('/api/forgot-password', async (req, res) => {
+    const { email } = req.body;
+    const user = await User.findOne({ email });
+    
+    if (!user) {
+        // Security Tip: Return a generic message so attackers don't know if the email exists
+        return res.status(200).json({ message: "If that email exists, a reset link has been sent." });
+    }
+
+    // Generate a secure 20-byte random token
+    const token = crypto.randomBytes(20).toString('hex');
+    
+    // Set token and 15-minute expiration
+    user.resetPasswordToken = token;
+    user.resetPasswordExpires = Date.now() + 900000; // 15 mins in ms
+    await user.save();
+
+    // Send the email (using nodemailer, SendGrid, etc.)
+    const resetUrl = `http://localhost:3000/reset-password.html?token=${token}`;
+    await sendEmail(user.email, "Password Reset Request", `Click here to reset: ${resetUrl}`);
+
+    res.status(200).json({ message: "Reset link sent successfully." });
+});
+const bcrypt = require('bcrypt');
+
+app.post('/api/reset-password', async (req, res) => {
+    const { token, newPassword } = req.body;
+
+    // Find user where token matches AND expiration time is still in the future
+    const user = await User.findOne({
+        resetPasswordToken: token,
+        resetPasswordExpires: { $gt: Date.now() }
+    });
+
+    if (!user) {
+        return res.status(400).json({ message: "Password reset token is invalid or has expired." });
+    }
+
+    // Hash the new password before saving!
+    const salt = await bcrypt.genSalt(10);
+    user.password = await bcrypt.hash(newPassword, salt);
+
+    // Clear the reset fields so the token can't be reused
+    user.resetPasswordToken = undefined;
+    user.resetPasswordExpires = undefined;
+    await user.save();
+
+    res.status(200).json({ message: "Password has been successfully updated!" });
+});
+</script>
+<script>
+    // Assuming your form has an ID of 'loginForm'. If it uses a different ID, change it here:
+    document.querySelector('form').addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        // 1. Get the values the user typed in
+        const emailInput = document.querySelector('input[type="email"]').value;
+        const passwordInput = document.querySelector('input[type="password"]').value;
+
+        // 2. Pull the saved account details from browser memory
+        const registerdEmail = localStorage.getItem('savedEmail');
+        const registeredPassword = localStorage.getItem('savedPassword');
+
+        // 3. Feedback Logic Rules
+        if (!registerdEmail) {
+            // No account has been created/reset yet
+            alert("❌ No account found! Please use the Forgot Password page to create one first.");
+        } 
+        else if (emailInput !== registerdEmail) {
+            // Email typed doesn't match our dummy account
+            alert("❌ Account does not exist. Check your email spelling.");
+        } 
+        else if (passwordInput !== registeredPassword) {
+            // Email matches, but password is wrong
+            alert("❌ Wrong password! Please try again.");
+        } 
+        else {
+    // Everything matches perfectly!
+    alert("✅ Login Successful! Welcome back to Head Hunters.");
+    
+    // 👇 CHANGE THIS LINE 👇
+    window.location.href = 'dashboard.html'; 
+}
+    });
+</script>
+<script>
+    // This catches the login form submission
+    document.querySelector('form').addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        // 1. Grab what the user just typed into the inputs
+        const emailInput = document.querySelector('input[type="email"]').value.trim();
+        const passwordInput = document.querySelector('input[type="password"]').value;
+
+        // 2. Fetch the credentials that were saved during the password reset
+        const registeredEmail = localStorage.getItem('savedEmail');
+        const registeredPassword = localStorage.getItem('savedPassword');
+
+        // 3. Precise Feedback Logic
+        if (!registeredEmail) {
+            // Scenario A: No password reset has happened on this browser yet
+            alert("❌ Account does not exist. Please use 'Forgot Password' to set up your account credentials first.");
+        } 
+        else if (emailInput !== registeredEmail) {
+            // Scenario B: The email typed doesn't match the registered email
+            alert("❌ No account found with this email address. Please check your spelling.");
+        } 
+        else if (passwordInput !== registeredPassword) {
+            // Scenario C: The email is right, but the password is wrong
+            alert("❌ Wrong password! Please try again.");
+        } 
+        else {
+            // Scenario D: Success! Both match perfectly
+            alert("✅ Login Successful! Welcome back to Head Hunters.");
+            
+            // Redirect to your main application dashboard
+            window.location.href = 'home.html'; 
+        }
+    });
+</script>
+</body>
+</html>

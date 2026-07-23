@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Companies Directory | Head Hunters Global</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="companies.css">
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://unpkg.com/@studio-freight/lenis@1.0.34/dist/lenis.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+</head>
+
+<body>
+<canvas id="webgl-bg"></canvas>
+
+<div class="site-wrapper">
+
+<header>
+
+<div class="logo">
+🏢 Head Hunters Global
+<a href="index.html"
+class="btn btn-back">
+← Back
+</a>
+</div>
+
+<nav>
+<ul>
+
+<li><a href="index.html">Home</a></li>
+
+<li><a href="companies.html">Companies</a></li>
+
+<li><a href="pricing.html">Pricing</a></li>
+
+<li><a href="lead-form.html">Lead Form</a></li>
+
+<li><a href="contact.html">Contact</a></li>
+
+</ul>
+</nav>
+
+</header>
+
+<section class="hero">
+
+<h1>Global Company Directory</h1>
+
+<p>
+Discover Companies, Industries &
+Premium Business Leads Worldwide
+</p>
+
+</section>
+
+<section class="search-section">
+
+<div class="search-container">
+
+<input
+type="text"
+placeholder="Search company...">
+
+<select>
+<option>All Industries</option>
+<option>Real Estate</option>
+<option>BPO</option>
+<option>Recruitment</option>
+<option>IT & Software</option>
+<option>Healthcare</option>
+<option>Finance</option>
+</select>
+
+<select>
+<option>All Countries</option>
+<option>India</option>
+<option>USA</option>
+<option>UK</option>
+<option>Singapore</option>
+<option>UAE</option>
+</select>
+
+<button class="search-btn">
+Search
+</button>
+
+</div>
+
+<section class="industry-section">
+<h2>Browse Companies By Industry</h2>
+<p class="industry-subtitle">Explore verified companies across industries worldwide</p>
+
+<div class="industry-grid">
+    <a href="Industries/Real Estate/real_estate.html" class="industry-card">🏢<h3>Real Estate</h3><p>Builders, Property Developers & Brokers</p></a>
+    <a href="Industries/BPO& Call Centers/bpo.html" class="industry-card">📞<h3>BPO & Call Centers</h3><p>Customer Support, KPO & Telemarketing</p></a>
+    <a href="Industries/Recruitment/recruitment.html" class="industry-card">💼<h3>Recruitment & HR</h3><p>Staffing, Headhunting & Executive Search</p></a>
+    <a href="Industries/IT Software/software.html" class="industry-card">💻<h3>IT & Software</h3><p>SaaS, AI, Development & Cloud Computing</p></a>
+    <a href="Industries/Finance/finance.html" class="industry-card">🏦<h3>Finance & Banking</h3><p>Banks, Insurance, Fintech & Investments</p></a>
+    <a href="Industries/Healthcare/healthcare.html" class="industry-card">🏥<h3>Healthcare</h3><p>Hospitals, Medical Devices & Pharmaceuticals</p></a>
+    <a href="Industries/Manufacturing/manufacturing.html" class="industry-card">🏭<h3>Manufacturing</h3><p>Industrial, Production & Factory Plants</p></a>
+    <a href="Industries/Education/education.html" class="industry-card">🎓<h3>Education</h3><p>Schools, Universities & EdTech Platforms</p></a>
+    <a href="Industries/Logistics/logistics.html" class="industry-card">🚚<h3>Logistics & Shipping</h3><p>Transport, Warehousing & Freight Forwarding</p></a>
+    <a href="Industries/Hospitality/hospitality.html" class="industry-card">🏨<h3>Hospitality</h3><p>Hotels, Restaurants, Resorts & Travel Agencies</p></a>
+    <a href="Industries/E-Commerce/e-commerce.html" class="industry-card">🛒<h3>E-Commerce & Retail</h3><p>Online Stores, Wholesale & Retail Marketplaces</p></a>
+    <a href="Industries/Government/government.html" class="industry-card">🏛️<h3>Government & NGO</h3><p>Public Sector, Nonprofits & Social Orgs</p></a>
+    <a href="Industries/Mining/mining.html" class="industry-card">⛏️<h3>Mining</h3><p>Coal, Metals, Minerals & Resource Extraction</p></a>
+    <a href="Industries/Oil Gas/oil.html" class="industry-card">🛢️<h3>Oil & Gas</h3><p>Petroleum, Energy, Refineries & Exploration</p></a>
+    <a href="Industries/Automobile/automobile.html" class="industry-card">🚗<h3>Automobile</h3><p>Car Manufacturers, Dealerships & Auto Parts</p></a>
+    <a href="Industries/Construction/construction.html" class="industry-card">🏗️<h3>Construction</h3><p>Infrastructure, Civil Engineering & Contractors</p></a>
+    <a href="Industries/Agriculture/agriculture.html" class="industry-card">🚜<h3>Agriculture</h3><p>Farming, Agrotech, Livestock & Forestry</p></a>
+    <a href="Industries/Chemical/chemical.html" class="industry-card">🧪<h3>Chemical</h3><p>Petrochemicals, Polymers & Industrial Gases</p></a>
+    <a href="Industries/Energy/energy.html" class="industry-card">⚡<h3>Energy & Utilities</h3><p>Solar, Wind, Power Grid Electricity & Water</p></a>
+    <a href="Industries/Media/media.html" class="industry-card">🎬<h3>Media & Entertainment</h3><p>Broadcasting, Film Production, Gaming & News</p></a>
+</div>
+</section>
+
+<section class="directory">
+
+<h2>Featured Companies</h2>
+
+<div class="company-grid">
+
+</div>
+
+</section>
+
+<footer>
+
+<p>
+© 2026 Head Hunters Global.
+All Rights Reserved.
+</p>
+
+</footer>
+</div>
+
+<script src="companies-animation.js"></script>
+<script src="companies.js"></script>
+
+</body>
+</html>

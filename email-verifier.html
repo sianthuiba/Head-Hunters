@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Head Hunters - Email Verification</title>
+
+<style>
+/* Main Page Styling */
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f4f4;
+    padding: 50px;
+    margin: 0;
+}
+
+.container {
+    max-width: 600px;
+    margin: auto;
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,.1);
+    text-align: center;
+}
+
+/* The button on your page that triggers the pop-up */
+.open-verifier-btn {
+    padding: 14px 24px;
+    background: #0d6efd;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: background 0.2s;
+}
+
+.open-verifier-btn:hover {
+    background: #0b5ed7;
+}
+
+/* ========================================== */
+/* MODAL POP-OUT STYLING            */
+/* ========================================== */
+
+/* The Dark Background Overlay that floods the page */
+.verifier-modal {
+  display: none; /* Hidden by default */
+  position: fixed;
+  z-index: 10000; 
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); 
+  backdrop-filter: blur(4px); 
+}
+
+/* The small focused area box that pops out */
+.verifier-modal-content {
+  background-color: #ffffff;
+  margin: 15% auto;
+  padding: 30px 24px;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 420px; 
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+  position: relative;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+/* Close Button (X) */
+.close-modal-btn {
+  position: absolute;
+  right: 16px;
+  top: 12px;
+  font-size: 28px;
+  cursor: pointer;
+  color: #aaa;
+  line-height: 1;
+}
+
+.close-modal-btn:hover {
+  color: #333;
+}
+
+.verifier-modal-content h3 {
+  margin-top: 0;
+  font-size: 22px;
+  color: #222;
+}
+
+.verifier-modal-content p {
+  color: #666;
+  font-size: 14px;
+  margin-bottom: 20px;
+}
+
+/* Input & Button inside the Modal Box */
+.verifier-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.verifier-form-group input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 15px;
+  box-sizing: border-box;
+}
+
+.verifier-form-group button {
+  width: 100%;
+  padding: 12px;
+  background-color: #0d6efd;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 15px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.verifier-form-group button:hover {
+  background-color: #0b5ed7;
+}
+
+/* Verification Result Message Zone */
+.verifier-result-msg {
+  margin-top: 20px;
+  font-size: 15px;
+  font-weight: bold;
+  min-height: 22px; /* Prevents layout shifting */
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Grow Your Business With Quality Leads</h2>
+    <p>Click the button below to open the validation helper tool from any page context.</p>
+    
+    <button class="open-verifier-btn" id="openEmailVerifier">Launch Email Verifier</button>
+</div>
+
+/* MODAL HTML STRUCTURE            */
+<div id="emailVerifierModal" class="verifier-modal">
+  <div class="verifier-modal-content">
+    <span class="close-modal-btn">&times;</span>
+    
+    <h3>📧 Email Verifier</h3>
+    <p>Enter an address to check its delivery status rules.</p>
+    
+    <div class="verifier-form-group">
+      <input type="email" id="modalEmailInput" placeholder="name@company.com" required>
+      <button id="modalVerifyBtn">Verify Address</button>
+    </div>
+    
+    <div id="verifierResult" class="verifier-result-msg"></div>
+  </div>
+</div>
+
+<script>
+let statusTimer;
+
+document.addEventListener('DOMContentLoaded', () => {
+  const modal = document.getElementById('emailVerifierModal');
+  const closeBtn = document.querySelector('.close-modal-btn');
+  const triggerBtn = document.getElementById('openEmailVerifier');
+
+  // --- MODAL TOGGLE HANDLERS ---
+  
+  // Open the small pop-out when clicking the launch button
+  if (triggerBtn) {
+    triggerBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      modal.style.display = 'block';
+    });
+  }
+
+  // Close when clicking the 'X'
+  closeBtn.addEventListener('click', () => {
+    closeModal();
+  });
+
+  // Close if user clicks outside the modal layout box
+  window.addEventListener('click', (e) => {
+    if (e.target === modal) {
+      closeModal();
+    }
+  });
+
+  function closeModal() {
+    modal.style.display = 'none';
+    // Clean up input fields and messages when closing out
+    document.getElementById("modalEmailInput").value = "";
+    document.getElementById("verifierResult").innerHTML = "";
+    clearTimeout(statusTimer);
+  }
+
+  // --- STRICT VERIFICATION LOGIC HANDLER ---
+  const verifyBtn = document.getElementById('modalVerifyBtn');
+  const emailInput = document.getElementById('modalEmailInput');
+  const resultElement = document.getElementById('verifierResult');
+
+  verifyBtn.addEventListener('click', () => {
+    // Clear active countdown timers
+    clearTimeout(statusTimer);
+
+    // Grab input, sanitize it
+    const email = emailInput.value.trim().toLowerCase();
+
+    // Reset indicator status
+    resultElement.innerHTML = "🔍 Checking...";
+    resultElement.style.color = "#333";
+
+    if (email === "") {
+        resultElement.innerHTML = "⚠️ Please enter an email address.";
+        resultElement.style.color = "orange";
+        startFadeTimer(); 
+        return;
+    }
+
+    // 1. Structure Check
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    if (!emailRegex.test(email)) {
+        resultElement.innerHTML = "❌ Invalid email format structure.";
+        resultElement.style.color = "red";
+        startFadeTimer(); 
+        return;
+    }
+
+    // 2. Extract pieces
+    const [username, domain] = email.split('@');
+
+    // 3. Fake/Disposable Block domains
+    const fakeDomains = ['test.com', 'example.com', 'fake.com', 'temp.com', 'mailinator.com', 'gamil.com'];
+    if (fakeDomains.includes(domain)) {
+        resultElement.innerHTML = "❌ Invalid: Fake or temporary email host.";
+        resultElement.style.color = "red";
+        startFadeTimer();
+        return;
+    }
+
+    // 4. Keyboard spam check
+    const consecutiveChars = /(.)\1\1\1/; 
+    const keyboardPatterns = /asdf|qwer|zxcv|1234/;
+    
+    if (consecutiveChars.test(username) || keyboardPatterns.test(username) || username.length < 4) {
+        resultElement.innerHTML = "❌ Invalid: Fake or non-existent inbox pattern.";
+        resultElement.style.color = "red";
+        startFadeTimer();
+        return;
+    }
+
+    // 5. Direct Blocklist
+    const specificFakeEmails = [
+        'hliioo@gmail.com',
+        'sianthui@gmail.com',
+        'sianthuiba@gmail.com',
+        'dianthuiba@gmail.com',
+        'javahlii@gmail.com'
+    ];
+
+    if (specificFakeEmails.includes(email)) {
+        resultElement.innerHTML = "❌ Invalid: This specific inbox does not exist.";
+        resultElement.style.color = "red";
+        startFadeTimer();
+        return;
+    }
+
+    // 6. Success Output
+    resultElement.innerHTML = "✅ Valid & Deliverable Email Address";
+    resultElement.style.color = "green";
+    startFadeTimer();
+  });
+
+  // Helper fade out system
+  function startFadeTimer() {
+      statusTimer = setTimeout(() => {
+          resultElement.innerHTML = "";
+      }, 5000); 
+  }
+});
+</script>
+
+</body>
+</html>

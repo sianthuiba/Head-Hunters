@@ -1,0 +1,207 @@
+/* RESET & GLOBAL */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background: #000000 !important; /* Full page background is now solid black */
+    color: #ffffff;
+}
+
+/* HEADER */
+header {
+    background: #0d6efd; /* Solid blue header so your logo and links stand out */
+    padding: 15px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.logo {
+    font-size: 26px;
+    font-weight: bold;
+    color: white;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+}
+
+nav ul li {
+    margin-left: 20px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/* HERO SECTION (No image, bright crisp text on black) */
+.hero {
+    background: transparent !important;
+    padding: 60px 20px;
+    text-align: center;
+}
+
+.hero h1 {
+    font-size: 45px;
+    margin-bottom: 15px;
+    color: #0d6efd !important; /* Striking blue headline */
+}
+
+.hero p {
+    font-size: 20px;
+    margin-bottom: 25px;
+    color: #cccccc !important; /* Light gray subtitle text */
+}
+
+/* SEARCH SECTION */
+.search-section {
+    background: transparent !important; /* Transparent container */
+    padding: 30px;
+    box-shadow: none !important; 
+}
+
+.search-container {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr auto;
+    gap: 15px;
+}
+
+.search-container input,
+.search-container select {
+    background: #111111 !important; /* Dark input fields that blend nicely into the black background */
+    padding: 14px;
+    border: 2px solid #0d6efd; /* Distinct blue outline */
+    border-radius: 8px;
+    color: #ffffff !important; /* Clean white text when you type */
+}
+
+/* Ensures dropdown selections are visible */
+.search-container select option {
+    color: #ffffff;
+    background: #111111;
+}
+
+.search-btn {
+    background: #0d6efd;
+    color: white;
+    border: none;
+    padding: 14px 25px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+/* INDUSTRY SECTIONS */
+.industry-section {
+    padding: 40px 40px 20px 40px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.industry-section h2 {
+    text-align: center;
+    margin-bottom: 5px;
+    color: #0d6efd;
+}
+
+.industry-subtitle {
+    text-align: center;
+    color: #aaa;
+    margin-bottom: 30px;
+    font-size: 16px;
+}
+
+.industry-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+.industry-card {
+    background: transparent !important; /* Transparent grid item backgrounds */
+    border: 1px solid #333333; /* Clean dark grey borders around cards */
+    border-radius: 12px;
+    padding: 20px;
+    text-decoration: none;
+    transition: transform 0.2s, border-color 0.2s;
+    font-size: 24px;
+}
+
+.industry-card h3 {
+    font-size: 18px;
+    color: #0d6efd !important; /* Links inside cards stay glowing blue */
+    margin: 10px 0 5px 0;
+    display: inline-block;
+    width: 100%;
+}
+
+.industry-card p {
+    font-size: 14px;
+    color: #bbbbbb !important; /* Light text for your descriptions */
+    margin: 0;
+    line-height: 1.4;
+}
+
+.industry-card:hover {
+    transform: translateY(-5px);
+    border-color: #0d6efd;
+    background: rgba(13, 110, 253, 0.1) !important; /* Subtle blue highlight on mouse hover */
+}
+
+/* COMPANY GRID & DIRECTORY */
+.directory {
+    padding: 40px 40px 60px 40px;
+    background: transparent !important;
+}
+
+.directory h2 {
+    text-align: center;
+    margin-bottom: 40px;
+    color: #0d6efd;
+}
+
+.company-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 25px;
+    background: transparent !important;
+}
+
+.company-card, .company-item, [class*="company-"] {
+    background: transparent !important;
+    box-shadow: none !important;
+    border: 1px solid #333333;
+    color: #ffffff !important;
+}
+
+/* FOOTER */
+footer {
+    background: #111111; /* Slightly lighter dark footer to anchor the bottom */
+    color: white;
+    text-align: center;
+    padding: 25px;
+    margin-top: 50px;
+}
+
+/* RESPONSIVE DESIGN */
+@media(max-width:768px) {
+    .hero h1 {
+        font-size: 35px;
+    }
+    .search-container {
+        grid-template-columns: 1fr;
+    }
+    .industry-section, .directory {
+        padding: 30px 20px;
+    }
+}

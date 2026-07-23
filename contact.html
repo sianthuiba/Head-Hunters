@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact Us - LeadPro</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    background:#f5f7fa;
+}
+
+header{
+    background:#0d6efd;
+    padding:15px 50px;
+}
+
+nav{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.logo{
+    color:#fff;
+    font-size:28px;
+    font-weight:bold;
+}
+
+nav ul{
+    list-style:none;
+    display:flex;
+}
+
+nav ul li{
+    margin-left:20px;
+}
+
+nav ul li a{
+    color:#fff;
+    text-decoration:none;
+    font-weight:bold;
+}
+
+.hero{
+    text-align:center;
+    padding:60px 20px;
+    background:#fff;
+}
+
+.hero h1{
+    color:#0d6efd;
+    margin-bottom:10px;
+}
+
+.container{
+    max-width:1200px;
+    margin:auto;
+    padding:40px 20px;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:30px;
+}
+
+.contact-info,
+.contact-form{
+    background:#fff;
+    padding:30px;
+    border-radius:10px;
+    box-shadow:0 2px 10px rgba(0,0,0,.1);
+}
+
+.contact-info h2,
+.contact-form h2{
+    margin-bottom:20px;
+    color:#0d6efd;
+}
+
+.info{
+    margin-bottom:20px;
+}
+
+.info strong{
+    display:block;
+    margin-bottom:5px;
+}
+
+.contact-form input,
+.contact-form textarea{
+    width:100%;
+    padding:12px;
+    margin-bottom:15px;
+    border:1px solid #ccc;
+    border-radius:5px;
+}
+
+.contact-form button{
+    background:#0d6efd;
+    color:#fff;
+    border:none;
+    padding:12px 20px;
+    border-radius:5px;
+    cursor:pointer;
+}
+
+.contact-form button:hover{
+    background:#084ec1;
+}
+
+.map{
+    margin-top:20px;
+}
+
+iframe{
+    width:100%;
+    height:300px;
+    border:none;
+    border-radius:10px;
+}
+
+.whatsapp-btn{
+    display:inline-block;
+    background:#25D366;
+    color:white;
+    text-decoration:none;
+    padding:12px 20px;
+    border-radius:5px;
+    margin-top:10px;
+}
+
+footer{
+    background:#222;
+    color:#fff;
+    text-align:center;
+    padding:20px;
+    margin-top:50px;
+}
+
+@media(max-width:768px){
+.container{
+    grid-template-columns:1fr;
+}
+}
+</style>
+</head>
+
+<body>
+    <div style="padding:15px;">
+    <button onclick="history.back()" class="back-btn">
+        ← Back
+    </button>
+</div>
+
+<header>
+<nav>
+<div class="logo">LeadPro</div>
+
+<ul>
+<li><a href="index.html">Home</a></li>
+<li><a href="about.html">About Us</a></li>
+<li><a href="services.html">Services</a></li>
+<li><a href="lead-form.html">Lead Form</a></li>
+<li><a href="contact.html">Contact Us</a></li>
+<li><a href="admin.html">Admin Panel</a></li>
+</ul>
+</nav>
+</header>
+
+<section class="hero">
+<h1>Contact Us</h1>
+<p>We would love to hear from you.</p>
+</section>
+
+<div class="container">
+
+<div class="contact-info">
+
+<h2>Get In Touch</h2>
+
+<div class="info">
+<strong>Phone</strong>
++91 7005936547
+</div>
+
+<div class="info">
+<strong>Email</strong>
+info@leadpro.com
+</div>
+
+<div class="info">
+<strong>Office Address</strong>
+Bangalore, Karnataka, India
+</div>
+
+<a class="whatsapp-btn"
+href="https://wa.me/917005936547"
+target="_blank">
+Chat on WhatsApp
+</a>
+
+<div class="map">
+<iframe
+src="https://maps.google.com/maps?q=Bangalore&t=&z=13&ie=UTF8&iwloc=&output=embed">
+</iframe>
+</div>
+
+</div>
+
+<div class="contact-form">
+
+<h2>Send Message</h2>
+
+<form>
+
+<input type="text"
+placeholder="Your Name"
+required>
+
+<input type="email"
+placeholder="Your Email"
+required>
+
+<input type="tel"
+placeholder="Mobile Number"
+required>
+
+<textarea rows="6"
+placeholder="Your Message"
+required></textarea>
+
+<button type="submit">
+Send Message
+</button>
+
+</form>
+
+</div>
+
+</div>
+
+<footer>
+<p>&copy; 2026 LeadPro. All Rights Reserved.</p>
+</footer>
+
+</body>
+</html>

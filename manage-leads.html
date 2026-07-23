@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Manage Leads - LeadPro CRM</title>
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:#f4f6f9;
+}
+
+.header{
+background:#0d6efd;
+color:white;
+padding:15px 20px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+}
+
+.container{
+padding:20px;
+}
+
+.btn{
+padding:10px 15px;
+border:none;
+border-radius:5px;
+cursor:pointer;
+color:white;
+font-weight:bold;
+text-decoration:none;
+}
+
+.btn-back{
+background:#dc3545;
+}
+
+.btn-save{
+background:#28a745;
+}
+
+.btn-edit{
+background:#0d6efd;
+}
+
+.btn-delete{
+background:#dc3545;
+}
+
+.btn-whatsapp{
+background:#25D366;
+}
+
+.search-box{
+width:100%;
+padding:12px;
+border:1px solid #ccc;
+border-radius:5px;
+margin-bottom:20px;
+}
+
+.table-container{
+background:white;
+padding:20px;
+border-radius:10px;
+overflow-x:auto;
+box-shadow:0 2px 10px rgba(0,0,0,.1);
+}
+
+table{
+width:100%;
+border-collapse:collapse;
+}
+
+th{
+background:#0d6efd;
+color:white;
+padding:12px;
+}
+
+td{
+padding:10px;
+border:1px solid #ddd;
+}
+
+input[type=text],
+input[type=email]{
+width:100%;
+padding:6px;
+border:1px solid #ccc;
+border-radius:4px;
+}
+
+select{
+padding:6px;
+}
+
+.action-buttons{
+display:flex;
+gap:5px;
+flex-wrap:wrap;
+}
+
+/* Missing Layout Elements Fix */
+.main-header {
+background: #fff;
+padding: 15px 20px;
+display: flex;
+justify-content: space-between;
+align-items: center;
+border-bottom: 1px solid #ddd;
+}
+.main-header nav ul {
+display: flex;
+list-style: none;
+gap: 15px;
+}
+.main-header nav ul li a {
+text-decoration: none;
+color: #333;
+font-weight: bold;
+}
+.hero-new {
+background: linear-gradient(135deg, #0d6efd, #0043a8);
+color: white;
+padding: 40px 20px;
+text-align: center;
+}
+.search-container {
+margin: 20px 0;
+}
+.search-container input {
+padding: 10px;
+width: 300px;
+border-radius: 5px 0 0 5px;
+border: none;
+}
+.search-container button {
+padding: 10px 20px;
+background: #28a745;
+color: white;
+border: none;
+border-radius: 0 5px 5px 0;
+cursor: pointer;
+font-weight: bold;
+}
+.hero-buttons a {
+margin: 0 10px;
+color: white;
+text-decoration: none;
+font-weight: bold;
+}
+.stats-section {
+display: flex;
+justify-content: space-around;
+padding: 20px;
+background: #fff;
+margin-bottom: 20px;
+box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+.stat-card {
+text-align: center;
+padding: 10px;
+}
+.stat-card h2 {
+color: #0d6efd;
+font-size: 2rem;
+}
+</style>
+</head>
+
+<body>
+
+<div class="header">
+<h2>Manage Leads</h2>
+<a href="dashboard.html" class="btn btn-back">← Dashboard</a>
+</div>
+
+<header class="main-header">
+<div class="logo">🏢 Head Hunters Global</div>
+<nav>
+<ul>
+<li><a href="index.html">Home</a></li>
+<li><a href="companies.html">Companies</a></li>
+<li><a href="services.html">Industries</a></li>
+<li><a href="pricing.html">Pricing</a></li>
+<li><a href="lead-form.html">Submit Lead</a></li>
+<li><a href="contact.html">Contact</a></li>
+<li><a href="admin.html">Login</a></li>
+</ul>
+</nav>
+</header>
+
+<section class="hero-new">
+<div class="overlay"></div>
+<div class="hero-content">
+<h1>Find Companies Worldwide</h1>
+<p>Discover Businesses, Decision Makers & Premium Leads Across 100+ Industries</p>
+<div class="search-container">
+<input type="text" placeholder="Search Company, Industry, City or Country...">
+<button>Search</button>
+</div>
+<div class="hero-buttons">
+<a href="companies.html" class="btn-primary">Browse Companies</a>
+<a href="pricing.html" class="btn-secondary">Unlock Premium Leads</a>
+</div>
+</div>
+</section>
+
+<section class="stats-section">
+<div class="stat-card">
+<h2 class="counter" id="company-count" data-target="0">0</h2>
+<p>Companies</p>
+</div>
+<div class="stat-card">
+<h2 class="counter" id="industry-count" data-target="0">0</h2>
+<p>Industries</p>
+</div>
+<div class="stat-card">
+<h2 class="counter" id="country-count" data-target="0">0</h2>
+<p>Countries</p>
+</div>
+<div class="stat-card">
+<h2 class="counter" id="contact-count" data-target="0">0</h2>
+<p>Business Contacts</p>
+</div>
+</section>
+<div class="container">
+<input type="text" id="searchInput" class="search-box" placeholder="Search Leads..." onkeyup="searchLead()">
+
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Company</th>
+<th>Phone</th>
+<th>Email</th>
+<th>City</th>
+<th>Service</th>
+<th>Priority</th>
+<th>Status</th>
+<th>Actions</th>
+</tr>
+</thead>
+<tbody id="leadBody">
+</tbody>
+</table>
+</div>
+</div>
+
+<script>
+const sheetURL = "https://script.google.com/macros/s/AKfycbx5V2DmuX_6w93uL51mwiiqfsIxH6EDOrVP5uisnfURL60ufQMS8hLLZ5S_YrshVEpKDg/exec";
+
+loadLeads();
+
+function updateDashboardStats(data) {
+    const uniqueCompanies = new Set();
+    const uniqueServices = new Set();
+    const uniqueCities = new Set(); // Using City as a proxy for Country tracking if Country column isn't explicitly defined.
+    let contactCount = 0;
+
+    data.forEach(lead => {
+        if (lead.company) uniqueCompanies.add(lead.company.trim());
+        if (lead.service) uniqueServices.add(lead.service.trim());
+        if (lead.city) uniqueCities.add(lead.city.trim());
+        contactCount++;
+    });
+
+    // Update targets dynamically
+    document.getElementById("company-count").setAttribute("data-target", uniqueCompanies.size);
+    document.getElementById("industry-count").setAttribute("data-target", uniqueServices.size);
+    document.getElementById("country-count").setAttribute("data-target", uniqueCities.size);
+    document.getElementById("contact-count").setAttribute("data-target", contactCount);
+
+    // Initialize animation engine
+    animateCounters();
+}
+
+function animateCounters() {
+    const counters = document.querySelectorAll('.counter');
+    counters.forEach(counter => {
+        counter.innerText = '0';
+        const updateCounter = () => {
+            const target = +counter.getAttribute('data-target');
+            const c = +counter.innerText;
+            const increment = Math.ceil(target / 20) || 1; // Animation speed adjust
+
+            if (c < target) {
+                counter.innerText = `${Math.min(c + increment, target)}`;
+                setTimeout(updateCounter, 30);
+            } else {
+                counter.innerText = target;
+            }
+        };
+        updateCounter();
+    });
+}
+
+function loadLeads(){
+fetch(sheetURL)
+.then(response=>response.json())
+.then(data=>{
+    // Update live metrics on dashboard first
+    updateDashboardStats(data);
+
+    let rows="";
+    data.forEach(lead=>{
+    rows += `
+    <tr data-id="${lead.id}">
+    <td>${lead.name||""}</td>
+    <td>${lead.company||""}</td>
+    <td>${lead.phone||""}</td>
+    <td>${lead.email||""}</td>
+    <td>${lead.city||""}</td>
+    <td>${lead.service||""}</td>
+    <td>${lead.priority||""}</td>
+    <td>
+    <select>
+    <option value="New" ${lead.status=="New"?"selected":""}>New</option>
+    <option value="Follow-up" ${lead.status=="Follow-up"?"selected":""}>Follow-up</option>
+    <option value="Converted" ${lead.status=="Converted"?"selected":""}>Converted</option>
+    </select>
+    </td>
+    <td>
+    <div class="action-buttons">
+    <button class="btn btn-edit" onclick="editLead(this)">Edit</button>
+    <button class="btn btn-save" onclick="saveLead(this)">Save</button>
+    <button class="btn btn-delete" onclick="deleteLead(this)">Delete</button>
+    <a target="_blank" class="btn btn-whatsapp" href="https://wa.me/${lead.whatsapp||lead.phone}">WA</a>
+    </div>
+    </td>
+    </tr>
+    `;
+    });
+    document.getElementById("leadBody").innerHTML = rows;
+});
+}
+
+function editLead(btn){
+let row = btn.closest("tr");
+let cells = row.querySelectorAll("td");
+for(let i=0;i<7;i++){
+let value = cells[i].innerText;
+cells[i].innerHTML = `<input type="text" value="${value}">`;
+}
+}
+
+function saveLead(btn){
+let row = btn.closest("tr");
+let id = row.dataset.id;
+let cells = row.querySelectorAll("td");
+let name = cells[0].querySelector("input").value;
+let company = cells[1].querySelector("input").value;
+let phone = cells[2].querySelector("input").value;
+let email = cells[3].querySelector("input").value;
+let city = cells[4].querySelector("input").value;
+let service = cells[5].querySelector("input").value;
+let priority = cells[6].querySelector("input").value;
+let status = cells[7].querySelector("select").value;
+
+fetch(sheetURL,{
+method:"POST",
+body:new URLSearchParams({
+action:"update",
+id:id,
+name:name,
+company:company,
+phone:phone,
+email:email,
+city:city,
+service:service,
+priority:priority,
+status:status
+})
+})
+.then(response=>response.text())
+.then(data=>{
+alert("Lead Updated");
+loadLeads();
+})
+.catch(error=>{
+alert("Update Failed");
+console.log(error);
+});
+}
+
+function deleteLead(btn){
+if(!confirm("Delete this lead?")) return;
+let row = btn.closest("tr");
+let id = row.dataset.id;
+
+fetch(sheetURL,{
+method:"POST",
+body:new URLSearchParams({
+action:"delete",
+id:id
+})
+})
+.then(response=>response.text())
+.then(data=>{
+alert("Lead Deleted");
+loadLeads(); // Reload statistics and rows instantly after deletion
+})
+.catch(error=>{
+alert("Delete Failed");
+console.log(error);
+});
+}
+
+function searchLead(){
+let input = document.getElementById("searchInput").value.toUpperCase();
+let rows = document.querySelectorAll("#leadBody tr");
+rows.forEach(row=>{
+let txt = row.innerText.toUpperCase();
+row.style.display = txt.indexOf(input)>-1 ? "" : "none";
+});
+}
+</script>
+
+</body>
+</html>

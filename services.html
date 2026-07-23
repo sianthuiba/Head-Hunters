@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Services - LeadPro</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    background:#f5f7fa;
+}
+
+header{
+    background:#0d6efd;
+    padding:15px 50px;
+}
+
+nav{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.logo{
+    color:#fff;
+    font-size:28px;
+    font-weight:bold;
+}
+
+nav ul{
+    list-style:none;
+    display:flex;
+}
+
+nav ul li{
+    margin-left:20px;
+}
+
+nav ul li a{
+    color:#fff;
+    text-decoration:none;
+    font-weight:bold;
+}
+
+.hero{
+    text-align:center;
+    padding:80px 20px;
+    background:#fff;
+}
+
+.hero h1{
+    color:#0d6efd;
+    margin-bottom:15px;
+}
+
+.hero p{
+    color:#555;
+}
+
+.container{
+    max-width:1200px;
+    margin:auto;
+    padding:50px 20px;
+}
+
+.services-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:25px;
+}
+
+.card{
+    background:#fff;
+    padding:25px;
+    border-radius:10px;
+    box-shadow:0 2px 10px rgba(0,0,0,0.1);
+    transition:0.3s;
+}
+
+.card:hover{
+    transform:translateY(-5px);
+}
+
+.card h3{
+    color:#0d6efd;
+    margin-bottom:15px;
+}
+
+.card p{
+    color:#666;
+    line-height:1.6;
+}
+
+.price-section{
+    margin-top:70px;
+}
+
+.price-title{
+    text-align:center;
+    margin-bottom:40px;
+}
+
+.pricing{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:25px;
+}
+
+.plan{
+    background:#fff;
+    text-align:center;
+    padding:30px;
+    border-radius:10px;
+    box-shadow:0 2px 10px rgba(0,0,0,0.1);
+}
+
+.plan h3{
+    color:#0d6efd;
+}
+
+.price{
+    font-size:35px;
+    margin:20px 0;
+    font-weight:bold;
+}
+
+.plan ul{
+    list-style:none;
+    margin-bottom:25px;
+}
+
+.plan ul li{
+    padding:8px 0;
+}
+
+.btn{
+    display:inline-block;
+    background:#0d6efd;
+    color:#fff;
+    padding:12px 25px;
+    text-decoration:none;
+    border-radius:5px;
+}
+
+.cta{
+    text-align:center;
+    margin-top:70px;
+}
+
+footer{
+    background:#222;
+    color:#fff;
+    text-align:center;
+    padding:20px;
+    margin-top:50px;
+}
+</style>
+</head>
+
+<body>
+    <div style="padding:15px;">
+    <button onclick="history.back()" class="back-btn">
+        ← Back
+    </button>
+</div>
+
+<header>
+<nav>
+<div class="logo">LeadPro</div>
+
+<ul>
+<li><a href="index.html">Home</a></li>
+<li><a href="about.html">About Us</a></li>
+<li><a href="services.html">Services</a></li>
+<li><a href="lead-form.html">Lead Form</a></li>
+<li><a href="contact.html">Contact Us</a></li>
+<li><a href="admin.html">Admin Panel</a></li>
+</ul>
+</nav>
+</header>
+
+<section class="hero">
+<h1>Our Services</h1>
+<p>Helping Businesses Grow Through High Quality Leads</p>
+</section>
+
+<div class="container">
+
+<div class="services-grid">
+
+<div class="card">
+<h3>Real Estate Leads</h3>
+<p>
+Qualified property buyer and seller leads for developers,
+agents and real estate companies.
+</p>
+</div>
+
+<div class="card">
+<h3>Recruitment Leads</h3>
+<p>
+Connect employers with job seekers and generate recruitment
+opportunities efficiently.
+</p>
+</div>
+
+<div class="card">
+<h3>Digital Marketing</h3>
+<p>
+SEO, social media marketing, paid advertising and conversion
+optimization services.
+</p>
+</div>
+
+<div class="card">
+<h3>BPO Services</h3>
+<p>
+Customer support, telecalling, lead qualification and
+outsourcing solutions.
+</p>
+</div>
+
+<div class="card">
+<h3>Insurance Leads</h3>
+<p>
+Targeted leads for life insurance, health insurance and
+vehicle insurance services.
+</p>
+</div>
+
+<div class="card">
+<h3>Loan Leads</h3>
+<p>
+Generate verified home loan, personal loan and business loan
+customer inquiries.
+</p>
+</div>
+
+</div>
+
+<div class="price-section">
+
+<div class="price-title">
+<h2>Lead Packages</h2>
+</div>
+
+<div class="pricing">
+
+<div class="plan">
+<h3>Starter</h3>
+<div class="price">₹999</div>
+<ul>
+<li>50 Leads</li>
+<li>Email Support</li>
+<li>Basic Reporting</li>
+</ul>
+<a href="contact.html" class="btn">Choose Plan</a>
+</div>
+
+<div class="plan">
+<h3>Business</h3>
+<div class="price">₹2,999</div>
+<ul>
+<li>200 Leads</li>
+<li>Priority Support</li>
+<li>Lead Analytics</li>
+</ul>
+<a href="contact.html" class="btn">Choose Plan</a>
+</div>
+
+<div class="plan">
+<h3>Premium</h3>
+<div class="price">₹6,999</div>
+<ul>
+<li>500 Leads</li>
+<li>Dedicated Manager</li>
+<li>Advanced Reports</li>
+</ul>
+<a href="contact.html" class="btn">Choose Plan</a>
+</div>
+
+</div>
+
+</div>
+
+<div class="cta">
+<h2>Need Custom Lead Solutions?</h2>
+<br>
+<a href="lead-form.html" class="btn">Request a Quote</a>
+</div>
+
+</div>
+
+<footer>
+<p>&copy; 2026 LeadPro. All Rights Reserved.</p>
+</footer>
+
+</body>
+</html>
