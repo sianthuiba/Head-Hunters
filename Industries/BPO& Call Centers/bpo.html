@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BPO Companies in the World</title>
+    <link rel="stylesheet" href="style.css">
+
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+<script src="https://unpkg.com/@studio-freight/lenis@1.0.34/dist/lenis.min.js"></script>
+</head>
+<body>
+
+<canvas id="webgl-canvas"></canvas>
+
+<div class="container">
+    <canvas id="webgl-canvas" class="fixed top-0 left-0 w-full h-full z-10"></canvas>
+
+<div class="fixed inset-0 z-20 pointer-events-none flex flex-col justify-end p-6 md:p-10">
+    <footer class="w-full flex justify-between items-end font-mono text-[10px] text-white/20 hidden md:flex">
+        <div>SCROLL SPEED MOMENTUM INTERACTIVE</div>
+        <div class="text-right text-[#00E5FF]">// MOMENTUM SCROLL DRIVEN</div>
+    </footer>
+</div>
+
+    <div class="container">
+        <header>
+            <a href="../../companies.html" style="display: inline-block; padding: 8px 16px; background-color: #334155; color: #fff; text-decoration: none; border-radius: 6px; font-size: 0.9rem; margin-bottom: 15px; font-weight: 600; border: 1px solid #475569;">← Back to Companies</a>
+            
+            <h1>BPO Companies in the World</h1>
+            <p>Connecting you to industry operators, brokerages, and investment firms worldwide.</p>
+        </header>
+
+        <div class="search-container">
+            <input type="text" id="searchInput" placeholder="Search by company name or location..." oninput="filterCompanies()">
+            
+            <select id="typeFilter" onchange="filterCompanies()">
+                <option value="all">All Specialties</option>
+                <option value="Brokerage">Brokerage</option>
+                <option value="Property Management">Property Management</option>
+                <option value="REIT & Investment">REIT & Investment</option>
+            </select>
+        </div>
+
+        <div class="grid" id="company-grid">
+
+            <div class="card" data-type="Brokerage">
+                <h3>Accenture</h3>
+                <span class="badge">Consulting, IT, BPO</span>
+                <div class="info-row"><span class="label">Headquarters:</span> Dublin, Ireland</div>
+                <div class="info-row"><span class="label">Focus:</span> Digital Transformation</div>
+                <div class="info-row"><span class="label">Employees:</span> 790,000+</div>
+                <div class="info-row"><span class="label">Founded:</span> 1989</div>
+                <a href="https://www.accenture.com" target="_blank" class="btn">Visit Official Website</a>
+            </div>
+
+            <div class="card" data-type="REIT & Investment">
+                <h3>Teleperformance</h3>
+                <span class="badge">Customer Support, CX, Technical Support</span>
+                <div class="info-row"><span class="label">Headquarters:</span> Paris, France</div>
+                <div class="info-row"><span class="label">Focus:</span> Customer Experience</div>
+                <div class="info-row"><span class="label">Employees:</span> 500,000+</div>
+                <div class="info-row"><span class="label">Founded:</span> 1978</div>
+                <a href="https://www.tp.com/en-us/" target="_blank" class="btn">Visit Official Website</a>
+            </div>
+
+            <div class="card" data-type="Property Management">
+                <h3>Concentrix</h3>
+                <span class="badge">CX, Technical Support, Analytics</span>
+                <div class="info-row"><span class="label">Headquarters:</span> Newark, California, USA</div>
+                <div class="info-row"><span class="label">Focus:</span> Customer Engagement</div>
+                <div class="info-row"><span class="label">Employees:</span> 440,000+</div>
+                <div class="info-row"><span class="label">Founded:</span> 1983</div>
+                <a href="https://www.concentrix.com" target="_blank" class="btn">Visit Official Website</a>
+            </div>
+
+            <div class="card" data-type="Brokerage">
+                <h3>Genpact</h3>
+                <span class="badge">Finance, Accounting, Procurement</span>
+                <div class="info-row"><span class="label">Headquarters:</span> New York, USA</div>
+                <div class="info-row"><span class="label">Focus:</span> Intelligent Operations</div>
+                <div class="info-row"><span class="label">Employees:</span> 125,000+</div>
+                <div class="info-row"><span class="label">Founded:</span> 1997</div>
+                <a href="https://www.genpact.com" target="_blank" class="btn">Visit Official Website</a>
+            </div>
+
+            <div class="card" data-type="Brokerage">
+                <h3>TCS</h3>
+                <span class="badge">Finance, Accounting, Procurement</span>
+                <div class="info-row"><span class="label">Headquarters:</span> Mumbai, India</div>
+                <div class="info-row"><span class="label">Focus:</span> Enterprise Solutions</div>
+                <div class="info-row"><span class="label">Employees:</span> 600,000+</div>
+                <div class="info-row"><span class="label">Founded:</span> 1968</div>
+                <a href="https://www.tcs.com" target="_blank" class="btn">Visit Official Website</a>
+            </div>
+
+            <div class="card" data-type="REIT & Investment">
+                <h3>Infosys BPM</h3>
+                <span class="badge">Finance, HR, Customer Service</span>
+                <div class="info-row"><span class="label">Headquarters:</span> Bengaluru, India</div>
+                <div class="info-row"><span class="label">Focus:</span> Digital BPM</div>
+                <div class="info-row"><span class="label">Employees:</span> 62,000+</div>
+                <div class="info-row"><span class="label">Founded:</span> 2002</div>
+                <a href="https://www.infosysbpm.com" target="_blank" class="btn">Visit Official Website</a>
+            </div>
+
+            <div class="card" data-type="REIT & Investment">
+                <h3>Wipro</h3>
+                <span class="badge">IT, BPO, Analytics</span>
+                <div class="info-row"><span class="label">Headquarters:</span> Bengaluru, India</div>
+                <div class="info-row"><span class="label">Focus:</span> Automation & AI.</div>
+                <div class="info-row"><span class="label">Employees:</span> 230,000+</div>
+                <div class="info-row"><span class="label">Founded:</span> 1945</div>
+                <a href="https://www.wipro.com" target="_blank" class="btn">Visit Official Website</a>
+            </div>
+
+            <div class="card" data-type="Property Management">
+                <h3>Cognizant</h3>
+                <span class="badge">Digital Operations, BPO</span>
+                <div class="info-row"><span class="label">Headquarters:</span> Teaneck, New Jersey, USA</div>
+                <div class="info-row"><span class="label">Focus:</span> Technology Services.</div>
+                <div class="info-row"><span class="label">Employees:</span> 340,000+</div>
+                <div class="info-row"><span class="label">Founded:</span> 1994</div>
+                <a href="https://www.cognizant.com" target="_blank" class="btn">Visit Official Website</a>
+            </div>
+
+            <div class="card" data-type="Property Management">
+                <h3>IBM Consulting</h3>
+                <span class="badge">Consulting, Business Services</span>
+                <div class="info-row"><span class="label">Headquarters:</span> Armonk, New York, USA</div>
+                <div class="info-row"><span class="label">Focus:</span> Enterprise Transformation.</div>
+                <div class="info-row"><span class="label">Employees:</span> 280,000+</div>
+                <div class="info-row"><span class="label">Founded:</span> 1911</div>
+                <a href="https://www.ibm.com" target="_blank" class="btn">Visit Official Website</a>
+            </div>
+
+            <div class="card" data-type="REIT & Investment">
+                <h3>Tech Mahindra</h3>
+                <span class="badge">Customer Care, IT, BPO</span>
+                <div class="info-row"><span class="label">Headquarters:</span> Pune, India</div>
+                <div class="info-row"><span class="label">Focus:</span> Telecom & Digital CX.</div>
+                <div class="info-row"><span class="label">Employees:</span> 150,000+</div>
+                <div class="info-row"><span class="label">Founded:</span> 1986</div>
+                <a href="https://www.techmahindra.com" target="_blank" class="btn">Visit Official Website</a>
+            </div>
+
+            <div class="card" data-type="Property Management">
+                <h3>Foundever</h3>
+                <span class="badge">Customer Care, CX, Sales</span>
+                <div class="info-row"><span class="label">Headquarters:</span> Luxembourg</div>
+                <div class="info-row"><span class="label">Focus:</span> Omnichannel Support</div>
+                <div class="info-row"><span class="label">Employees:</span> 170,000+</div>
+                <div class="info-row"><span class="label">Founded:</span> 1985</div>
+                <a href="https://www.foundever.com" target="_blank" class="btn">Visit Official Website</a>
+            </div>
+
+            <div class="card" data-type="Property Management">
+                <h3>Alorica</h3>
+                <span class="badge">Contact Center, Back Office</span>
+                <div class="info-row"><span class="label">Headquarters:</span> Irvine, California, USA</div>
+                <div class="info-row"><span class="label">Focus:</span> Customer Management</div>
+                <div class="info-row"><span class="label">Employees:</span> 100,000+</div>
+                <div class="info-row"><span class="label">Founded:</span> 1999</div>
+                <a href="https://www.alorica.com" target="_blank" class="btn">Visit Official Website</a>
+            </div>
+
+            <div class="card" data-type="Property Management">
+                <h3>TTEC</h3>
+                <span class="badge">Customer Experience, AI Support</span>
+                <div class="info-row"><span class="label">Headquarters:</span> Greenwood Village, Colorado, USA</div>
+                <div class="info-row"><span class="label">Focus:</span> CX Outsourcing</div>
+                <div class="info-row"><span class="label">Employees:</span> 55,000+</div>
+                <div class="info-row"><span class="label">Founded:</span> 1982</div>
+                <a href="https://www.ttec.com" target="_blank" class="btn">Visit Official Website</a>
+            </div>
+
+            <div class="card" data-type="Property Management">
+                <h3>TELUS Digital</h3>
+                <span class="badge">AI Data Services, Customer Support</span>
+                <div class="info-row"><span class="label">Headquarters:</span> Vancouver, Canada</div>
+                <div class="info-row"><span class="label">Focus:</span> Digital Customer Experience</div>
+                <div class="info-row"><span class="label">Employees:</span> 75,000+</div>
+                <div class="info-row"><span class="label">Founded:</span> 2005</div>
+                <a href="https://www.telusdigital.com" target="_blank" class="btn">Visit Official Website</a>
+            </div>
+
+            <div class="card" data-type="Property Management">
+                <h3>Sutherland</h3>
+                <span class="badge">BPO, Analytics, Digital Transformation</span>
+                <div class="info-row"><span class="label">Headquarters:</span> Rochester, New York, USA</div>
+                <div class="info-row"><span class="label">Focus:</span> Business Process Services</div>
+                <div class="info-row"><span class="label">Employees:</span> 38,000+</div>
+                <div class="info-row"><span class="label">Founded:</span> 1986</div>
+                <a href="https://www.sutherlandglobal.com" target="_blank" class="btn">Visit Official Website</a>
+            </div>
+
+            <div class="card" data-type="Property Management">
+                <h3>HGS (Hinduja Global Solutions)</h3>
+                <span class="badge">Customer Experience, Digital Services, Back Office</span>
+                <div class="info-row"><span class="label">Headquarters:</span> Bengaluru, India</div>
+                <div class="info-row"><span class="label">Focus:</span> Customer Experience Management</div>
+                <div class="info-row"><span class="label">Employees:</span> 18,000+</div>
+                <div class="info-row"><span class="label">Founded:</span> 1973</div>
+                <a href="https://www.hgs.cx" target="_blank" class="btn">Visit Official Website</a>
+            </div>
+
+            <div class="card" data-type="REIT & Investment">
+                <h3>WNS Global Services</h3>
+                <span class="badge">Business Process Management, Analytics, Finance & Accounting</span>
+                <div class="info-row"><span class="label">Headquarters:</span> Mumbai, India</div>
+                <div class="info-row"><span class="label">Focus:</span> Digital-Led Business Transformation</div>
+                <div class="info-row"><span class="label">Employees:</span> 60,000+</div>
+                <div class="info-row"><span class="label">Founded:</span> 1996</div>
+                <a href="https://www.wns.com" target="_blank" class="btn">Visit Official Website</a>
+            </div>
+
+            <div class="card" data-type="Property Management">
+                <h3>Conduent</h3>
+                <span class="badge">Customer Care, Transaction Processing, Government Services</span>
+                <div class="info-row"><span class="label">Headquarters:</span> Florham Park, New Jersey, USA</div>
+                <div class="info-row"><span class="label">Focus:</span> Business Process Services</div>
+                <div class="info-row"><span class="label">Employees:</span> 55,000+</div>
+                <div class="info-row"><span class="label">Founded:</span> 2017</div>
+                <a href="https://www.conduent.com" target="_blank" class="btn">Visit Official Website</a>
+            </div>
+
+            <div class="card" data-type="Property Management">
+                <h3>Atento</h3>
+                <span class="badge">CRM, Customer Service, Sales Support</span>
+                <div class="info-row"><span class="label">Headquarters:</span> Madrid, Spain</div>
+                <div class="info-row"><span class="label">Focus:</span> Customer Relationship Management</div>
+                <div class="info-row"><span class="label">Employees:</span> 110,000+</div>
+                <div class="info-row"><span class="label">Founded:</span> 1999</div>
+                <a href="https://www.atento.com" target="_blank" class="btn">Visit Official Website</a>
+            </div>
+
+            <div class="card" data-type="Property Management">
+                <h3>Transcom</h3>
+                <span class="badge">PCustomer Support, Technical Support, Sales</span>
+                <div class="info-row"><span class="label">Headquarters:</span> Stockholm, Sweden</div>
+                <div class="info-row"><span class="label">Focus:</span> Customer Experience Solutions</div>
+                <div class="info-row"><span class="label">Employees:</span> 30,000+</div>
+                <div class="info-row"><span class="label">Founded:</span> 1995</div>
+                <a href="https://www.transcom.com" target="_blank" class="btn">Visit Official Website</a>
+            </div>
+
+            <div class="card" data-type="REIT & Investment">
+                <h3>Konecta</h3>
+                <span class="badge">Contact Center, BPO, Digital CX</span>
+                <div class="info-row"><span class="label">Headquarters:</span> Madrid, Spain</div>
+                <div class="info-row"><span class="label">Focus:</span> Customer Management</div>
+                <div class="info-row"><span class="label">Employees:</span> 120,000+</div>
+                <div class="info-row"><span class="label">Founded:</span> 1999</div>
+                <a href="hhttps://www.konecta-group.com" target="_blank" class="btn">Visit Official Website</a>
+            </div>
+
+            <div class="card" data-type="REIT & Investment">
+                <h3>TaskUs</h3>
+                <span class="badge">Content Moderation, Customer Experience, AI Operations</span>
+                <div class="info-row"><span class="label">Headquarters:</span> New Braunfels, Texas, USA</div>
+                <div class="info-row"><span class="label">Focus:</span> Digital Outsourcing</div>
+                <div class="info-row"><span class="label">Employees:</span> 49,600+</div>
+                <div class="info-row"><span class="label">Founded:</span> 2008</div>
+                <a href="https://www.taskus.com" target="_blank" class="btn">Visit Official Website</a>
+            </div>
+
+            <div Capgemini Business Services">
+                <h3>Unibail-Rodamco-Westfield</h3>
+                <span class="badge">Finance, Procurement, HR, Shared Services</span>
+                <div class="info-row"><span class="label">Headquarters:</span> Paris, France</div>
+                <div class="info-row"><span class="label">Focus:</span> Intelligent Business Operations</div>
+                <div class="info-row"><span class="label">Employees:</span> 340,000+</div>
+                <div class="info-row"><span class="label">Founded:</span> 1967</div>
+                <a href="https://www.capgemini.com" target="_blank" class="btn">Visit Official Website</a>
+            </div>
+
+            <div class="card" data-type="Property Management">
+                <h3>ADP</h3>
+                <span class="badge">Payroll, HR Outsourcing, Benefits Administration</span>
+                <div class="info-row"><span class="label">Headquarters:</span> Roseland, New Jersey, USA</div>
+                <div class="info-row"><span class="label">Focus:</span> Human Capital Management</div>
+                <div class="info-row"><span class="label">Employees:</span> 64,000+</div>
+                <div class="info-row"><span class="label">Founded:</span> 1949</div>
+                <a href="https://www.adp.com" target="_blank" class="btn">Visit Official Website</a>
+            </div>
+             <div class="card" data-type="Property Management">
+                <h3>Firstsource Solutions</h3>
+                <span class="badge">Healthcare BPO, Banking BPO, Customer Management</span>
+                <div class="info-row"><span class="label">Headquarters:</span> Mumbai, India</div>
+                <div class="info-row"><span class="label">Focus:</span> Digital BPM</div>
+                <div class="info-row"><span class="label">Employees:</span> 34,000+</div>
+                <div class="info-row"><span class="label">Founded:</span> 2001</div>
+                <a href="https://www.firstsource.com" target="_blank" class="btn">Visit Official Website</a>
+            </div>
+              <div class="card" data-type="Property Management">
+                <h3>EXL Service</h3>
+                <span class="badge">Analytics, AI, Digital Operations, BPM</span>
+                <div class="info-row"><span class="label">Headquarters:</span> New York, USA</div>
+                <div class="info-row"><span class="label">Focus:</span> Data & AI Transformation</div>
+                <div class="info-row"><span class="label">Employees:</span> 65000+</div>
+                <div class="info-row"><span class="label">Founded:</span> 1999</div>
+                <a href="https://www.exlservice.com" target="_blank" class="btn">Visit Official Website</a>
+            </div>
+             <div class="card" data-type="Property Management">
+                <h3>NTT DATA</h3>
+                <span class="badge">IT Services, Consulting, Business Process Services</span>
+                <div class="info-row"><span class="label">Headquarters:</span> Tokyo, Japan</div>
+                <div class="info-row"><span class="label">Focus:</span> Digital Transformation</div>
+                <div class="info-row"><span class="label">Employees:</span> 190000+</div>
+                <div class="info-row"><span class="label">Founded:</span> 1988</div>
+                <a href="https://www.nttdata.com" target="_blank" class="btn">Visit Official Website</a>
+            </div>
+              <div class="card" data-type="Property Management">
+                <h3>Foundever</h3>
+                <span class="badge">Customer Care, Technical Support, Sales</span>
+                <div class="info-row"><span class="label">Headquarters:</span> Luxembourg</div>
+                <div class="info-row"><span class="label">Focus:</span> Customer Experience</div>
+                <div class="info-row"><span class="label">Employees:</span> 170000+</div>
+                <div class="info-row"><span class="label">Founded:</span> 1985</div>
+                <a href="https://www.foundever.com" target="_blank" class="btn">Visit Official Website</a>
+            </div>
+            <div class="card" data-type="Property Management">
+                <h3>Acquire BPO</h3>
+                <span class="badge">Contact Center, Back Office, Finance & Accounting</span>
+                <div class="info-row"><span class="label">Headquarters:</span> Melbourne, Australia</div>
+                <div class="info-row"><span class="label">Focus:</span> Outsourcing Solutions</div>
+                <div class="info-row"><span class="label">Employees:</span> 9000+</div>
+                <div class="info-row"><span class="label">Founded:</span> 2005</div>
+                <a href="https://www.acquirebpo.com" target="_blank" class="btn">Visit Official Website</a>
+            </div>
+             <div class="card" data-type="Property Management">
+                <h3>DXC Technology</h3>
+                <span class="badge">IT Outsourcing, BPS, Cloud Services</span>
+                <div class="info-row"><span class="label">Headquarters:</span>Ashburn, Virginia, USA</div>
+                <div class="info-row"><span class="label">Focus:</span> Enterprise Technology Services</div>
+                <div class="info-row"><span class="label">Employees:</span> 120000+</div>
+                <div class="info-row"><span class="label">Founded:</span> 2017</div>
+                <a href="https://www.dxc.com" target="_blank" class="btn">Visit Official Website</a>
+            </div>
+             <div class="card" data-type="Property Management">
+                <h3>HCLTech BPM Services</h3>
+                <span class="badge">Finance, HR, Procurement, Customer Service</span>
+                <div class="info-row"><span class="label">Headquarters:</span>Noida, India</div>
+                <div class="info-row"><span class="label">Focus:</span> Digital Process Operations</div>
+                <div class="info-row"><span class="label">Employees:</span> 20000+</div>
+                <div class="info-row"><span class="label">Founded:</span> 1999</div>
+                <a href="https://www.hcltech.com" target="_blank" class="btn">Visit Official Website</a>
+            </div>
+            <div class="card" data-type="Property Management">
+                <h3>Startek</h3>
+                <span class="badge">Customer Care, Technical Support, Sales</span>
+                <div class="info-row"><span class="label">Headquarters:</span>Denver, Colorado, USA</div>
+                <div class="info-row"><span class="label">Focus:</span> Customer Experience Management</div>
+                <div class="info-row"><span class="label">Employees:</span> 38000+</div>
+                <div class="info-row"><span class="label">Founded:</span> 1987</div>
+                <a href="https://www.startek.com" target="_blank" class="btn">Visit Official Website</a>
+            </div>
+            <div class="card" data-type="Property Management">
+                <h3>TELUS Digital</h3>
+                <span class="badge">Digital CX, AI Data Services, Customer Support</span>
+                <div class="info-row"><span class="label">Headquarters:</span>Vancouver, Canada</div>
+                <div class="info-row"><span class="label">Focus:</span> AI-Powered Customer Experience</div>
+                <div class="info-row"><span class="label">Employees:</span> 75000+</div>
+                <div class="info-row"><span class="label">Founded:</span> 2005</div>
+                <a href="https://www.telusdigital.com" target="_blank" class="btn">Visit Official Website</a>
+            </div>
+            <div class="card" data-type="Property Management">
+                <h3>CGS</h3>
+                <span class="badge">Contact Center, IT Services, Learning Solutions</span>
+                <div class="info-row"><span class="label">Headquarters:</span>New York, USA</div>
+                <div class="info-row"><span class="label">Focus:</span> Business Applications & CX</div>
+                <div class="info-row"><span class="label">Employees:</span> 7500+</div>
+                <div class="info-row"><span class="label">Founded:</span> 1984</div>
+                <a href="https://www.cgsinc.com" target="_blank" class="btn">Visit Official Website</a>
+            </div>
+            <div class="card" data-type="Property Management">
+                <h3>Inspiro</h3>
+                <span class="badge">Customer Care, Technical Support, Back Office</span>
+                <div class="info-row"><span class="label">Headquarters:</span>Makati City, Philippines</div>
+                <div class="info-row"><span class="label">Focus:</span> Customer Experience Outsourcing</div>
+                <div class="info-row"><span class="label">Employees:</span> 12000+</div>
+                <div class="info-row"><span class="label">Founded:</span> 2006</div>
+                <a href="https://www.inspiro.com" target="_blank" class="btn">Visit Official Website</a>
+            </div>
+            <div class="card" data-type="Property Management">
+                <h3>VXI Global Solutions</h3>
+                <span class="badge">Customer Care, BPO, CX</span>
+                <div class="info-row"><span class="label">Headquarters:</span>Los Angeles, USA</div>
+                <div class="info-row"><span class="label">Focus:</span> Customer Experience</div>
+                <div class="info-row"><span class="label">Employees:</span> 45000+</div>
+                <div class="info-row"><span class="label">Founded:</span> 1998</div>
+                <a href="https://www.vxi.com" target="_blank" class="btn">Visit Official Website</a>
+            </div>
+             <div class="card" data-type="Property Management">
+                <h3>ResultsCX</h3>
+                <span class="badge">Customer Support, Sales, Analytics</span>
+                <div class="info-row"><span class="label">Headquarters:</span>Fort Lauderdale, USA</div>
+                <div class="info-row"><span class="label">Focus:</span> Customer Lifecycle Management</div>
+                <div class="info-row"><span class="label">Employees:</span> 23000+</div>
+                <div class="info-row"><span class="label">Founded:</span> 1990</div>
+                <a href="https://www.resultscx.com" target="_blank" class="btn">Visit Official Website</a>
+            </div>
+            <div class="card" data-type="Property Management">
+                <h3>Webhelp</h3>
+                <span class="badge">Customer Experience, BPO</span>
+                <div class="info-row"><span class="label">Headquarters:</span>Paris, France</div>
+                <div class="info-row"><span class="label">Focus:</span> Digital Customer Operations</div>
+                <div class="info-row"><span class="label">Employees:</span> 120000+</div>
+                <div class="info-row"><span class="label">Founded:</span> 2000</div>
+                <a href="https://outplex.com/" target="_blank" class="btn">Visit Official Website</a>
+            </div> 
+            <div class="card" data-type="Property Management">
+                <h3>iQor</h3>
+                <span class="badge">Customer Interaction, Technical Support </span>
+                <div class="info-row"><span class="label">Headquarters:</span>St. Petersburg, Florida, USA</div>
+                <div class="info-row"><span class="label">Focus:</span> Customer Engagement</div>
+                <div class="info-row"><span class="label">Employees:</span> 40000+</div>
+                <div class="info-row"><span class="label">Founded:</span> 1957</div>
+                <a href="https://www.iqor.com" target="_blank" class="btn">Visit Official Website</a>
+            </div>
+             <div class="card" data-type="Property Management">
+                <h3>Fusion CX</h3>
+                <span class="badge">Customer Care, Back Office, Technical Support </span>
+                <div class="info-row"><span class="label">Headquarters:</span> Florida, USA</div>
+                <div class="info-row"><span class="label">Focus:</span> Customer Experience</div>
+                <div class="info-row"><span class="label">Employees:</span> 14000+</div>
+                <div class="info-row"><span class="label">Founded:</span> 2004</div>
+                <a href="https://www.fusioncx.com" target="_blank" class="btn">Visit Official Website</a>
+            </div>
+             <div class="card" data-type="Property Management">
+                <h3>Movate</h3>
+                <span class="badge">Digital Services, Customer Support </span>
+                <div class="info-row"><span class="label">Headquarters:</span> Plano, Texas, USA</div>
+                <div class="info-row"><span class="label">Focus:</span> Digital Transformation</div>
+                <div class="info-row"><span class="label">Employees:</span> 12000+</div>
+                <div class="info-row"><span class="label">Founded:</span> 1996</div>
+                <a href="https://www.movate.com" target="_blank" class="btn">Visit Official Website</a>
+            </div>
+            <div class="card" data-type="Property Management">
+                <h3>Datamark</h3>
+                <span class="badge">Business Process Outsourcing, Data Processing </span>
+                <div class="info-row"><span class="label">Headquarters:</span> El Paso, Texas, USA</div>
+                <div class="info-row"><span class="label">Focus:</span> Back Office Operations</div>
+                <div class="info-row"><span class="label">Employees:</span> 3000+</div>
+                <div class="info-row"><span class="label">Founded:</span> 1989</div>
+                <a href="https://www.datamark.net" target="_blank" class="btn">Visit Official Website</a>
+            </div>
+            <div class="card" data-type="Property Management">
+                <h3>Helpware</h3>
+                <span class="badge">Customer Support, Back Office </span>
+                <div class="info-row"><span class="label">Headquarters:</span> Lexington, Kentucky, USA</div>
+                <div class="info-row"><span class="label">Focus:</span> Outsourced Teams</div>
+                <div class="info-row"><span class="label">Employees:</span> 5000+</div>
+                <div class="info-row"><span class="label">Founded:</span> 2015</div>
+                <a href="https://www.helpware.com" target="_blank" class="btn">Visit Official Website</a>
+            </div>
+            <div class="card" data-type="Property Management">
+                <h3>OutPLEX</h3>
+                <span class="badge">Contact Center, Sales Support </span>
+                <div class="info-row"><span class="label">Headquarters:</span> Fort Lauderdale, Florida, USA</div>
+                <div class="info-row"><span class="label">Focus:</span> Customer Contact Solutions</div>
+                <div class="info-row"><span class="label">Employees:</span> 4000+</div>
+                <div class="info-row"><span class="label">Founded:</span> 2001</div>
+                <a href="https://www.outplex.com" target="_blank" class="btn">Visit Official Website</a>
+            </div>
+             <div class="card" data-type="Property Management">
+                <h3>Sourcefit</h3>
+                <span class="badge">Staffing, BPO, Back Office </span>
+                <div class="info-row"><span class="label">Headquarters:</span> Quezon City, Philippines</div>
+                <div class="info-row"><span class="label">Focus:</span> Offshore Staffing</div>
+                <div class="info-row"><span class="label">Employees:</span> 2000+</div>
+                <div class="info-row"><span class="label">Founded:</span> 2006</div>
+                <a href="https://www.sourcefit.com" target="_blank" class="btn">Visit Official Website</a>
+            </div>
+            <div class="card" data-type="Property Management">
+                <h3>Personiv</h3>
+                <span class="badge">Accounting, Customer Care, Back Office </span>
+                <div class="info-row"><span class="label">Headquarters:</span> Austin, Texas, USA</div>
+                <div class="info-row"><span class="label">Focus:</span> Business Support Services</div>
+                <div class="info-row"><span class="label">Employees:</span> 1000+</div>
+                <div class="info-row"><span class="label">Founded:</span> 1985</div>
+                <a href="https://www.personiv.com" target="_blank" class="btn">Visit Official Website</a>
+            </div>
+            <div class="card" data-type="Property Management">
+                <h3>Flatworld Solutions</h3>
+                <span class="badge">IT, BPO, Data Entry </span>
+                <div class="info-row"><span class="label">Headquarters:</span> Bengaluru, India</div>
+                <div class="info-row"><span class="label">Focus:</span> Business Process Outsourcing</div>
+                <div class="info-row"><span class="label">Employees:</span> 18000+</div>
+                <div class="info-row"><span class="label">Founded:</span> 2002</div>
+                <a href="https://www.flatworldsolutions.com" target="_blank" class="btn">Visit Official Website</a>
+            </div>
+            <div class="card" data-type="Property Management">
+                <h3>Apex BPO Services</h3>
+                <span class="badge">Customer Service, Call Center </span>
+                <div class="info-row"><span class="label">Headquarters:</span> California, USA</div>
+                <div class="info-row"><span class="label">Focus:</span> Customer Support</div>
+                <div class="info-row"><span class="label">Employees:</span> 1000+</div>
+                <div class="info-row"><span class="label">Founded:</span> 2003</div>
+                <a href="https://www.apexbpo.com" target="_blank" class="btn">Visit Official Website</a>
+            </div>
+            <div class="card" data-type="Property Management">
+                <h3>Unity Communications</h3>
+                <span class="badge">Customer Support, Back Office</span>
+                <div class="info-row"><span class="label">Headquarters:</span>Gilbert, Arizona, USA</div>
+                <div class="info-row"><span class="label">Focus:</span> Business Process Outsourcing</div>
+                <div class="info-row"><span class="label">Employees:</span> 3000+</div>
+                <div class="info-row"><span class="label">Founded:</span> 2009</div>
+                <a href="https://unity-connect.com" target="_blank" class="btn">Visit Official Website</a>
+            </div>
+            <div class="card" data-type="Property Management">
+                <h3>Qualfon</h3>
+                <span class="badge">Customer Care, Sales, Back Office</span>
+                <div class="info-row"><span class="label">Headquarters:</span>Highland Park, Michigan, USA</div>
+                <div class="info-row"><span class="label">Focus:</span> Customer Experience</div>
+                <div class="info-row"><span class="label">Employees:</span> 18000+</div>
+                <div class="info-row"><span class="label">Founded:</span> 1995</div>
+                <a href="https://www.qualfon.com" target="_blank" class="btn">Visit Official Website</a>
+            </div>
+
+
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

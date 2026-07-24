@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cushman & Wakefield - Commercial Real Estate Profile</title>
+    <style>
+        body { 
+            font-family: 'Segoe UI', Arial, sans-serif; 
+            margin: 0; 
+            background: #f8fafc; 
+            color: #1e293b; 
+        }
+        .container {
+            max-width: 600px; 
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+        /* Back Button Styling */
+        .btn-back {
+            display: inline-flex;
+            align-items: center;
+            background: transparent;
+            color: #64748b;
+            border: 1px solid #cbd5e1;
+            padding: 8px 14px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin-bottom: 20px;
+            transition: all 0.2s;
+        }
+        .btn-back:hover {
+            background: #f1f5f9;
+            color: #1e293b;
+            border-color: #94a3b8;
+        }
+        .profile-card { 
+            background: white; 
+            padding: 30px; 
+            border-radius: 12px; 
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05); 
+        }
+        .meta-row { 
+            margin: 12px 0; 
+            font-size: 0.95rem; 
+        }
+        .label { 
+            font-weight: 600; 
+            color: #64748b; 
+        }
+        /* Primary Action Website Button */
+        .btn-visit { 
+            display: block; 
+            text-align: center; 
+            background: #2563eb; 
+            color: white; 
+            padding: 12px; 
+            text-decoration: none; 
+            border-radius: 6px; 
+            font-weight: bold; 
+            margin-top: 25px; 
+            transition: background 0.2s;
+        }
+        .btn-visit:hover { 
+            background: #1d4ed8; 
+        }
+    </style>
+</head>
+<body>
+
+    <div id="global-header"></div>
+
+    <div class="container">
+        <a href="javascript:history.back()" class="btn-back">← Back to Directory</a>
+
+        <main class="profile-card">
+            <h1>Cushman & Wakefield</h1>
+            <hr style="border: 0; height: 1px; background: #e2e8f0; margin-bottom: 20px;">
+            
+            <div class="meta-row"><span class="label">Category:</span> Commercial Real Estate Services</div>
+            <div class="meta-row"><span class="label">Headquarters:</span> Chicago, Illinois, USA</div>
+            <div class="meta-row"><span class="label">Global Presence:</span> Over 60 Countries</div>
+            
+            <p style="line-height: 1.6; color: #475569; margin-top: 15px;">
+                A leading global real estate services firm that delivers exceptional value for real estate occupiers and owners, specializing in property management, leasing, capital markets, and advisory core services.
+            </p>
+
+            <a href="https://www.cushmanwakefield.com/en?utm_source=chatgpt.com" target="_blank" class="btn-visit">Visit Official Website ↗</a>
+        </main>
+    </div>
+
+    <div id="global-footer"></div>
+
+    <script src="../../../assets/layout-injector.js"></script>
+
+</body>
+</html>

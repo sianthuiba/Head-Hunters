@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Global Commercial Real Estate Directory</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="grid-lines"></div>
+<canvas id="webgl-canvas"></canvas>
+
+    <div class="container">
+        <header>
+            <a href="../../companies.html" style="display: inline-block; padding: 8px 16px; background-color: #334155; color: #fff; text-decoration: none; border-radius: 6px; font-size: 0.9rem; margin-bottom: 15px; font-weight: 600; border: 1px solid #475569;">← Back to Companies</a>
+            
+            <h1>Global Commercial Real Estate Directory</h1>
+            <p>Connecting you to industry operators, brokerages, and investment firms worldwide.</p>
+        </header>
+
+        <div class="search-container">
+            <input type="text" id="searchInput" placeholder="Search by company name or location..." oninput="filterCompanies()">
+            
+            <select id="typeFilter" onchange="filterCompanies()">
+                <option value="all">All Specialties</option>
+                <option value="Brokerage">Brokerage</option>
+                <option value="Property Management">Property Management</option>
+                <option value="REIT & Investment">REIT & Investment</option>
+            </select>
+        </div>
+
+        <div class="grid" id="company-grid">
+
+            <div class="card" data-type="Brokerage">
+                <h3>CBRE Group, Inc.</h3>
+                <span class="badge">Brokerage & Services</span>
+                <div class="info-row"><span class="label">Headquarters:</span> Dallas, Texas, USA</div>
+                <div class="info-row"><span class="label">Focus:</span> Global commercial leasing, investment management, and valuation.</div>
+                <a href="https://www.cbre.com" target="_blank" class="btn">Visit Official Website</a>
+            </div>
+
+            <div class="card" data-type="REIT & Investment">
+                <h3>Prologis, Inc.</h3>
+                <span class="badge">REIT & Investment</span>
+                <div class="info-row"><span class="label">Headquarters:</span> San Francisco, California, USA</div>
+                <div class="info-row"><span class="label">Focus:</span> Logistics facilities, industrial warehouses, and supply chain real estate.</div>
+                <a href="https://www.prologis.com?utm_source=chatgpt.com" target="_blank" class="btn">Visit Official Website</a>
+            </div>
+
+            <div class="card" data-type="Property Management">
+                <h3>Jones Lang LaSalle (JLL)</h3>
+                <span class="badge">Property Management</span>
+                <div class="info-row"><span class="label">Headquarters:</span> Chicago, Illinois, USA</div>
+                <div class="info-row"><span class="label">Focus:</span> Property management, corporate occupier solutions, and commercial brokerage.</div>
+                <a href="https://www.jll.com?utm_source=chatgpt.com" target="_blank" class="btn">Visit Official Website</a>
+            </div>
+
+            <div class="card" data-type="Brokerage">
+                <h3>Cushman & Wakefield</h3>
+                <span class="badge">Brokerage & Services</span>
+                <div class="info-row"><span class="label">Headquarters:</span> Chicago, Illinois, USA</div>
+                <div class="info-row"><span class="label">Focus:</span> Major global commercial real estate brokerage, corporate occupier solutions, and property management firm.</div>
+                <a href="https://www.cushmanwakefield.com?utm_source=chatgpt.com" target="_blank" class="btn">Visit Official Website</a>
+            </div>
+
+            <div class="card" data-type="Brokerage">
+                <h3>Colliers</h3>
+                <span class="badge">Brokerage & Services</span>
+                <div class="info-row"><span class="label">Headquarters:</span> Toronto, Ontario, Canada</div>
+                <div class="info-row"><span class="label">Focus:</span> Global commercial real estate services, investment management, and professional advisory services.</div>
+                <a href="https://www.colliers.com?utm_source=chatgpt.com" target="_blank" class="btn">Visit Official Website</a>
+            </div>
+
+            <div class="card" data-type="REIT & Investment">
+                <h3>Brookfield Asset Management</h3>
+                <span class="badge">REIT & Investment</span>
+                <div class="info-row"><span class="label">Headquarters:</span> Toronto, Ontario, Canada</div>
+                <div class="info-row"><span class="label">Focus:</span> Owns and manages a massive portfolio of office buildings, logistics facilities, retail centers, and multifamily properties worldwide.</div>
+                <a href="https://www.brookfield.com?utm_source=chatgpt.com" target="_blank" class="btn">Visit Official Website</a>
+            </div>
+
+            <div class="card" data-type="REIT & Investment">
+                <h3>Simon Property Group</h3>
+                <span class="badge">REIT & Investment</span>
+                <div class="info-row"><span class="label">Headquarters:</span> Indianapolis, Indiana, USA</div>
+                <div class="info-row"><span class="label">Focus:</span> Premier real estate investment trust and a major owner of premier shopping malls, dining, entertainment, and mixed-use retail properties.</div>
+                <a href="https://www.simon.com?utm_source=chatgpt.com" target="_blank" class="btn">Visit Official Website</a>
+            </div>
+
+            <div class="card" data-type="Property Management">
+                <h3>China Vanke</h3>
+                <span class="badge">Property Management</span>
+                <div class="info-row"><span class="label">Headquarters:</span> Shenzhen, Guangdong, China</div>
+                <div class="info-row"><span class="label">Focus:</span> One of China's largest residential property developers and urban development service providers.</div>
+                <a href="https://www.vanke.com?utm_source=chatgpt.com" target="_blank" class="btn">Visit Official Website</a>
+            </div>
+
+            <div class="card" data-type="Property Management">
+                <h3>Country Garden</h3>
+                <span class="badge">Property Management</span>
+                <div class="info-row"><span class="label">Headquarters:</span> Foshan, Guangdong, China</div>
+                <div class="info-row"><span class="label">Focus:</span> Large-scale property development enterprise specializing in residential communities and mixed-use property development.</div>
+                <a href="https://www.countrygarden.com?utm_source=chatgpt.com" target="_blank" class="btn">Visit Official Website</a>
+            </div>
+
+            <div class="card" data-type="REIT & Investment">
+                <h3>CapitaLand</h3>
+                <span class="badge">REIT & Investment</span>
+                <div class="info-row"><span class="label">Headquarters:</span> Singapore</div>
+                <div class="info-row"><span class="label">Focus:</span> One of Asia's largest diversified real estate groups that develops and manages residential, commercial, retail, lodging, and industrial properties globally.</div>
+                <a href="https://www.capitaland.com?utm_source=chatgpt.com" target="_blank" class="btn">Visit Official Website</a>
+            </div>
+
+            <div class="card" data-type="Property Management">
+                <h3>DLF Limited</h3>
+                <span class="badge">Property Management</span>
+                <div class="info-row"><span class="label">Headquarters:</span> New Delhi, India</div>
+                <div class="info-row"><span class="label">Focus:</span> One of the largest commercial and residential real estate developers in India, known for creating major business districts and luxury housing.</div>
+                <a href="https://www.dlf.com?utm_source=chatgpt.com" target="_blank" class="btn">Visit Official Website</a>
+            </div>
+
+            <div class="card" data-type="Property Management">
+                <h3>Godrej Properties</h3>
+                <span class="badge">Property Management</span>
+                <div class="info-row"><span class="label">Headquarters:</span> Mumbai, Maharashtra, India</div>
+                <div class="info-row"><span class="label">Focus:</span> Leading developer bringing the Godrej Group philosophy of innovation, sustainability, and excellence to residential and commercial projects.</div>
+                <a href="https://www.godrejproperties.com?utm_source=chatgpt.com" target="_blank" class="btn">Visit Official Website</a>
+            </div>
+
+            <div class="card" data-type="Property Management">
+                <h3>Prestige Group</h3>
+                <span class="badge">Property Management</span>
+                <div class="info-row"><span class="label">Headquarters:</span> Bengaluru, Karnataka, India</div>
+                <div class="info-row"><span class="label">Focus:</span> Major diversified developer with a massive footprint in residential, commercial, retail, leisure, and hospitality segments.</div>
+                <a href="https://www.prestigegroup.com?utm_source=chatgpt.com" target="_blank" class="btn">Visit Official Website</a>
+            </div>
+
+            <div class="card" data-type="Property Management">
+                <h3>Brigade Group</h3>
+                <span class="badge">Property Management</span>
+                <div class="info-row"><span class="label">Headquarters:</span> Bengaluru, Karnataka, India</div>
+                <div class="info-row"><span class="label">Focus:</span> Leading property developer specializing in residential, commercial, retail, and hospitality sectors across South India.</div>
+                <a href="https://www.brigadegroup.com?utm_source=chatgpt.com" target="_blank" class="btn">Visit Official Website</a>
+            </div>
+
+            <div class="card" data-type="Property Management">
+                <h3>Sobha Limited</h3>
+                <span class="badge">Property Management</span>
+                <div class="info-row"><span class="label">Headquarters:</span> Bengaluru, Karnataka, India</div>
+                <div class="info-row"><span class="label">Focus:</span> Real estate development and construction company famous for its backward integration model and high-quality residential townships.</div>
+                <a href="https://www.sobha.com?utm_source=chatgpt.com" target="_blank" class="btn">Visit Official Website</a>
+            </div>
+
+            <div class="card" data-type="Property Management">
+                <h3>Lodha Group (Macrotech Developers)</h3>
+                <span class="badge">Property Management</span>
+                <div class="info-row"><span class="label">Headquarters:</span> Mumbai, Maharashtra, India</div>
+                <div class="info-row"><span class="label">Focus:</span> Premium residential and commercial real estate developer, renowned for building landmark high-rises and luxury estates.</div>
+                <a href="https://www.lodha.com?utm_source=chatgpt.com" target="_blank" class="btn">Visit Official Website</a>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
