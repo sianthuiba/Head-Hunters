@@ -106,6 +106,7 @@ window.onclick = function(event) {
   }
 }
 
+//searcg
 
 document.addEventListener("DOMContentLoaded", () => {
   // 1. Sidebar logic
@@ -132,19 +133,26 @@ document.addEventListener("DOMContentLoaded", () => {
   const dossierDynamicContent = document.getElementById("dossierDynamicContent");
   const fullDossierModal = document.getElementById("fullDossierModal");
 
-  // Make sure to define your API Key & Search Engine ID here
   const GOOGLE_API_KEY = "YOUR_ACTUAL_API_KEY";
   const GOOGLE_CX = "YOUR_ACTUAL_CX_ID";
 
   if (aiSearchForm) {
     aiSearchForm.addEventListener("submit", async (event) => {
-      event.preventDefault(); // Stop page reload
+      event.preventDefault();
 
       const rawInput = searchInput ? searchInput.value.trim() : "";
       if (!rawInput) return;
 
       if (resultsWrapper) {
         resultsWrapper.innerHTML = "<p style='color:#a855f7'>Scanning public records...</p>";
+      }
+
+      // Check if keys are placeholders
+      if (GOOGLE_API_KEY === "YOUR_ACTUAL_API_KEY" || GOOGLE_CX === "YOUR_ACTUAL_CX_ID") {
+        if (resultsWrapper) {
+          resultsWrapper.innerHTML = "<p style='color:red'>Error: Please replace placeholder API keys in your script.</p>";
+        }
+        return;
       }
 
       try {
@@ -166,6 +174,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const result = data.items[0];
 
+        // Fallback rendering if modal/dossier elements aren't present in HTML
         if (dossierDynamicContent && fullDossierModal) {
           dossierDynamicContent.innerHTML = `
             <h2>${result.title}</h2>
@@ -175,9 +184,16 @@ document.addEventListener("DOMContentLoaded", () => {
             </p>
           `;
           fullDossierModal.classList.add("active");
+          if (resultsWrapper) resultsWrapper.innerHTML = "";
+        } else if (resultsWrapper) {
+          // Fallback to display results directly inside the wrapper if modal elements are missing
+          resultsWrapper.innerHTML = `
+            <div class="result-card" style="background: rgba(255,255,255,0.05); padding: 15px; border-radius: 8px; margin-top: 10px;">
+              <h3 style="margin-bottom: 5px;"><a href="${result.link}" target="_blank" style="color: #a855f7;">${result.title}</a></h3>
+              <p style="font-size: 14px; color: #ccc;">${result.snippet}</p>
+            </div>
+          `;
         }
-
-        if (resultsWrapper) resultsWrapper.innerHTML = "";
       } catch (error) {
         console.error("Fetch failure:", error);
         if (resultsWrapper) {
