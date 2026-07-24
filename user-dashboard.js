@@ -105,3 +105,19 @@ window.onclick = function(event) {
     modal.style.display = "none";
   }
 }
+document.getElementById('aiSearchForm').addEventListener('submit', function(e) {
+    e.preventDefault(); // Prevents page refresh
+    
+    const query = document.getElementById('aiSearchInput').value;
+    const resultsWrapper = document.getElementById('aiResultsWrapper');
+
+    if (!query) return;
+
+    // Fetch data from your backend API or mock responses
+    resultsWrapper.innerHTML = `<p>Searching for <strong>${query}</strong>...</p>`;
+    
+    // Example placeholder logic:
+    setTimeout(() => {
+        resultsWrapper.innerHTML = `<div class="result-card">Results for ${query} will appear here.</div>`;
+    }, 1000);
+});
