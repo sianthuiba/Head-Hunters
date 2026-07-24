@@ -106,25 +106,33 @@ window.onclick = function(event) {
   }
 }
 
-//searcg
+// Sidebar functionality
 
 document.addEventListener("DOMContentLoaded", () => {
-  // 1. Sidebar logic
-  const sidebar = document.getElementById("sidebar");
-  const trigger = document.querySelector(".sidebar-trigger");
-  const main = document.querySelector(".main");
 
-  if (sidebar && trigger) {
+    const sidebar = document.getElementById("sidebar");
+    const trigger = document.querySelector(".sidebar-trigger");
+    const main = document.querySelector(".main");
+
+    if (!sidebar || !trigger) return;
+
     trigger.addEventListener("mouseenter", () => {
-      sidebar.classList.add("active");
-      if (main) main.classList.add("dimmed");
+        sidebar.classList.add("active");
+
+        if (main) {
+            main.classList.add("dimmed");
+        }
     });
 
     sidebar.addEventListener("mouseleave", () => {
-      sidebar.classList.remove("active");
-      if (main) main.classList.remove("dimmed");
+        sidebar.classList.remove("active");
+
+        if (main) {
+            main.classList.remove("dimmed");
+        }
     });
-  }
+
+});
 
   // 2. AI Search Form logic
   const aiSearchForm = document.getElementById("aiSearchForm");
