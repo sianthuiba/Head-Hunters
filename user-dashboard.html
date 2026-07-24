@@ -63,22 +63,17 @@
             <div class="profile" id="userEmailDisplay">👤 Premium User</div>
         </div>
 
-       <form id="aiSearchForm">
-    <div style="display: flex; gap: 10px; align-items: center;">
-        <input type="text" id="aiSearchInput" placeholder="Try typing 'elon musk' or 'apple'..." required style="flex: 1; padding: 12px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1); background: rgba(0,0,0,0.2); color: white;">
-        <button type="submit" id="aiSearchBtn" style="padding: 12px 24px; border-radius: 8px; background: linear-gradient(135deg, #a855f7, #6366f1); color: white; border: none; cursor: pointer;">Deep Scan</button>
-    </div>
-</form>
+        <form id="aiSearchForm" class="ai-search-container">
+            <h2>🤖 AI Intel Search</h2>
+            <p class="search-subtitle">Scan deep public records, emails, and profiles for any candidate or company instantly.</p>
+            
+            <div class="search-box-wrapper">
+                <input type="text" id="aiSearchInput" placeholder="Try typing 'elon musk' or 'apple'...">
+                <button type="submit" id="aiSearchBtn">Deep Scan</button>
+            </div>
 
-<!-- Results container -->
-<div id="aiResultsWrapper" style="margin-top: 15px;"></div>
-
-<!-- Hidden Modal for Full Dossier Results -->
-<div id="fullDossierModal" class="modal" style="display: none;">
-    <div class="modal-content" style="background: #1e1e2f; padding: 20px; border-radius: 12px; color: white; margin-top: 20px;">
-        <div id="dossierDynamicContent"></div>
-    </div>
-</div>
+            <div id="aiResultsWrapper"></div>
+        </form>
 
         <div class="stats">
             <div class="card">
